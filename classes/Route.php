@@ -26,8 +26,7 @@ class Route {
                 }
 		
 		if (!$callback || !is_callable($callback)) {
-			echo "View::error: na rota '$uri'";
-			//View::error("route $uri");
+			View::error("route $uri");
 			return;
 		}
 

@@ -1,8 +1,9 @@
 <?php
 	$autenticada = false;
-	if(!$autenticada){
-		header("Location: login/");
-	}
+	
+	// if(!$autenticada){
+	// 	header("Location: login/");
+	// }
 
 ?>
 <!DOCTYPE html>

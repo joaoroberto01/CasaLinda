@@ -11,4 +11,5 @@
 
 	define('CLASSES_PATH', 'classes/');
 	define('VIEWS_PATH', 'views/');
+	define('ERROR_VIEW_PATH', VIEWS_PATH . 'error.php');
 ?>
