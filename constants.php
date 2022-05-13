@@ -7,6 +7,7 @@
 	define('BS_CSS_PATH', ROOT_PATH . 'res/bootstrap/css/bootstrap.css');
 	define('BS_JS_PATH', ROOT_PATH . 'res/bootstrap/js/bootstrap.js');
 	define('IMG_PATH', ROOT_PATH . 'res/img');
+	define('VARIABLES_CSS_PATH', ROOT_PATH . 'res/css/variables.css');
 	
 
 	define('CLASSES_PATH', 'classes/');
