@@ -11,26 +11,27 @@
 	background-color: var(--text-color) !important;
 }
 
-/*
-font-family: -apple-system-body
-font-family: -apple-system-headline
-font-family: -apple-system-subheadline
-font-family: -apple-system-caption1
-font-family: -apple-system-caption2
-font-family: -apple-system-footnote
-font-family: -apple-system-short-body
-font-family: -apple-system-short-headline
-font-family: -apple-system-short-subheadline
-font-family: -apple-system-short-caption1
-font-family: -apple-system-short-footnote
-font-family: -apple-system-tall-body
-*/
+@font-face {
+  font-family: 'SF-Pro-Rounded-Medium';
+  src: url('../fonts/sf-rounded/SF-Pro-Rounded-Medium.eot'); /* IE9 Compat Modes */
+  src: url('../fonts/sf-rounded/SF-Pro-Rounded-Medium.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/sf-rounded/SF-Pro-Rounded-Medium.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../fonts/sf-rounded/SF-Pro-Rounded-Medium.woff') format('font-woff'), /* Pretty Modern Browsers */
+       url('../fonts/sf-rounded/SF-Pro-Rounded-Medium.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/sf-rounded/SF-Pro-Rounded-Medium.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
 
 /*@font-face {
-  font-family: 'SF-Pro-Rounded';
-  src: url('../fonts/SF-Pro-Rounded'); /* IE9 Compat Modes 
-  src: url('webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 
-       url('webfont.woff') format('woff'), /* Modern Browsers 
-       url('webfont.ttf')  format('truetype'), /* Safari, Android, iOS 
-       url('webfont.svg#svgFontName') format('svg'); /* Legacy iOS 
-}*/
+    font-family: 'SFRounded-Medium';
+    src: url('SFRounded-Medium.eot');
+    src: url('SFRounded-Medium.eot?#iefix') format('embedded-opentype'),
+        url('SFRounded-Medium.woff2') format('woff2'),
+        url('SFRounded-Medium.woff') format('woff'),
+        url('SFRounded-Medium.ttf') format('truetype'),
+        url('SFRounded-Medium.svg#SFRounded-Medium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+*/

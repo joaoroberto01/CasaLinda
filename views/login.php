@@ -11,8 +11,7 @@
 	<style type="text/css">
 		body {
 			background-color: var(--background-color);
-			/*font-family: Montserrat !important;*/
-			font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+			font-family: 'SF-Pro-Rounded-Medium' !important;
 		}
 
 		img {
