@@ -3,7 +3,7 @@
 	require_once CLASSES_PATH . 'Route.php';
 	require_once CLASSES_PATH . 'View.php';
 
-	require_once CLASSES_PATH . 'DB.php';
+	require_once CLASSES_PATH . 'DBController.php';
 
 	Route::add('/', function() {
 		View::render('main');
@@ -17,7 +17,12 @@
 		View::render('send_email');
 	});
 
-	// Route::add('/db', function() {
+	Route::add('/db', function() {
+		$db = new DBController('Usuarios');
+
+   		$lid = $db->insert(['nome' => "joao", 'idade' => 20]);
+		echo "last inserted id was $lid";
+	});
 	// 	$db = new DB("estoque");
 	// 	//select table_schema as database_name, table_name from information_schema.tables
 	// 	//$db->select("table_schema as database_name", ["clause" => "", "values" => []])

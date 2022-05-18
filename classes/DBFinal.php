@@ -25,7 +25,7 @@ class DB {
         }
     }
 
-    public function execute($query,$params = []){
+    private function execute($query, $params = []){
         try{
             $statement = $this->connection->prepare($query);
             $statement->execute($params);
