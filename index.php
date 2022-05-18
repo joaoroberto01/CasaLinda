@@ -13,6 +13,10 @@
 		View::render('login');
 	});
 
+	Route::add('/email', function() {
+		View::render('send_email');
+	});
+
 	// Route::add('/db', function() {
 	// 	$db = new DB("estoque");
 	// 	//select table_schema as database_name, table_name from information_schema.tables

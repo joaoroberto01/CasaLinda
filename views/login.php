@@ -11,7 +11,7 @@
 	<style type="text/css">
 		body {
 			background-color: var(--background-color);
-			font-family: 'SF-Pro-Rounded-Medium' !important;
+			font-family: var(--default-font);
 		}
 
 		img {
@@ -51,6 +51,7 @@
 
 </head>
 <body>
+	<h1>AUAU</h1>
 	<div class="container-fluid">
 		<div class="row d-flex justify-content-center">
 			<div id="login-container" class="col-sm-3 col-md-6 col-lg-4 text-center">
