@@ -45,5 +45,36 @@
 
             return $this->connection->lastInsertId();
         }
+
+        public function selectSingle($fields, $predicate = "", $params = []){
+            $query = "SELECT $fields FROM $this->table $predicate";
+            $statement = $this->execute($query, $params);
+
+            return $statement->fetch(PDO::FETCH_ASSOC);
+        }
+
+        public function select($fields, $predicate = "", $params = []){
+            $query = "SELECT $fields FROM $this->table $predicate";
+            $statement = $this->execute($query, $params);
+
+            return $statement->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        public function update($dict, $where = "", $whereParams = []){
+            $fields = implode('= ?,', array_keys($dict)) . '= ?'; // "nome = ?, idade = ?"
+            
+            $values = array_merge(array_values($dict), $whereParams);
+
+            $query = "UPDATE $this->table SET $fields $where";
+
+            $this->execute($query, $values);
+        }
+
+        
+
+        public function delete($where, $params){
+            $this->execute("DELETE FROM $this->table $where", $params);
+        }
+
     }
 ?>
