@@ -1,6 +1,9 @@
 <?php
     class View {
-        public static function render($view) {
+        public static function render($view, $params = []) {
+            foreach ($params as $key => $value)
+                $$key = $value;
+
             $file = VIEWS_PATH . "$view.php";
             if(file_exists($file))
                 require_once $file;

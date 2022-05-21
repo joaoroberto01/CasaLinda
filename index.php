@@ -1,20 +1,29 @@
 <?php
 	require_once 'autoload.php';
-	require_once CLASSES_PATH . 'Route.php';
-	require_once CLASSES_PATH . 'View.php';
-
-	require_once CLASSES_PATH . 'DBController.php';
 
 	Route::add('/', function() {
 		View::render('main');
 	});
 
 	Route::add('/login', function() {
-		View::render('login');
+		View::render('login/login');
 	});
 
-	Route::add('/email', function() {
-		View::render('send_email');
+	Route::add('/forgot', function() {
+		View::render('login/forgot');
+	});
+
+	Route::add('/recovery', function() {
+		header("Location: forgot");
+	});
+
+	Route::add('/recovery/(.+)', function($userInfo) {
+		//var_dump($userInfo);
+		View::render('login/recovery', ['userInfo' => $userInfo]);
+	});
+
+	Route::add('/changepassword/(.+)', function($userInfo) {
+		View::render('login/change_password', ['userInfo' => $userInfo]);
 	});
 
 	Route::add('/db', function() {
@@ -34,27 +43,11 @@
 		$results = $db->select('*');
 		print_r($results);
 
-
-		ProductController->insert()
-
 		// $results = $db->selectSingle('*', "WHERE idade = ?", [20]);
 		// echo "select single: ";
 		// print_r($results);
 
-		
-
 	});
-
-	// 	$db = new DB("estoque");
-	// 	//select table_schema as database_name, table_name from information_schema.tables
-	// 	//$db->select("table_schema as database_name", ["clause" => "", "values" => []])
-
-	// 	//$results = $db->select("*", ['clause' => "id_produto = ? OR id_produto = ?", "values" => [1, 0]]);
-
-	// 	$results = $db->selectAll("*");
-
-	// 	var_dump($results);
-	// });
 
 	Route::dispatch();
 ?>
