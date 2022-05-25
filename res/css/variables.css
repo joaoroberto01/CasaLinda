@@ -1,10 +1,14 @@
 :root {
 	--background-color: #FFE6D2;
-	--text-color: #F38723;
+  --card-background: #FFF1E3;
+  --card-selected: rgba(244, 129, 23, 0.5);
+  --text-color: #F38723;
   --light-black: #1B1B1B;
+  --light-gray: #898989;
   --btn-hover-color: #DA6E0A;
-  --logout-background-color: rgba(255, 79, 79, 0.44);
-  --logout-hover-background-color: rgba(255, 79, 79, 0.88);
+  --card-btn-hover: #F48117;
+  --logout-background-color: #FF9C9C;
+  --logout-hover-background-color: #FF6969;
 
 	--default-font: SF-Regular;
 }

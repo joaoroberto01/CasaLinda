@@ -48,8 +48,9 @@
 
 	});
 
-	Route::add('/auth', function() {
-
+	Route::add('/logout', function() {
+		setcookie('user', null, -1);
+		header('Location: login');
 	});
 
 	Route::dispatch();

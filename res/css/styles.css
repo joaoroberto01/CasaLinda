@@ -10,6 +10,6 @@ body {
 	border: var(--text-color) solid 3px !important;
 }
 
-input, button {
+input, .btn {
 	border-radius: 8px !important;
 }
