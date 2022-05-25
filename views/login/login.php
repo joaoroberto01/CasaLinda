@@ -1,3 +1,19 @@
+<?php
+
+if ($_POST){
+	$userController = new UserController();
+	$password = sha1($_POST['password']);
+	$user = $userController->auth($_POST['username'], $password);
+
+    if($user){
+        setcookie('user', json_encode($user), time() + 3600);
+
+        header("Location: " . ROOT_PATH);
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,7 +22,6 @@
 	<title><?=PROJECT_NAME?> - Login</title>
 
 	<link rel="stylesheet" href="<?=BS_CSS_PATH?>">
-	<link rel="stylesheet" href="<?=VARIABLES_CSS_PATH?>">
 	<link rel="stylesheet" type="text/css" href="<?=DEFAULT_CSS_PATH?>">
 
 	<style type="text/css">
@@ -51,21 +66,10 @@
 					<input class="form-control no-border mt-3" type="password" name="password" placeholder="Senha"
 					style="margin-bottom: 8%">
 					<button class="btn btn-login default-background-color mt-4">Entrar</button><br>
-					<a class="default-text-color" href="forgot">Esqueci minha senha</a>
+					<a class="default-text-color" href="<?=ROOT_PATH?>forgot">Esqueci minha senha</a>
 				</form>
 			</div>
 		</div>
 	</div>
-
-
-
-<?php
-	print_r($_POST);
-
-
-
-
-?>
-
 </body>
 </html>

@@ -2,7 +2,7 @@
 	require_once 'autoload.php';
 
 	Route::add('/', function() {
-		View::render('main');
+		View::render('main/main');
 	});
 
 	Route::add('/login', function() {
@@ -18,7 +18,6 @@
 	});
 
 	Route::add('/recovery/(.+)', function($userInfo) {
-		//var_dump($userInfo);
 		View::render('login/recovery', ['userInfo' => $userInfo]);
 	});
 
@@ -27,7 +26,7 @@
 	});
 
 	Route::add('/db', function() {
-		$db = new DBController('Usuarios');
+		$db = new UserController();
 
    		// $lid = $db->insert(['nome' => "joao", 'idade' => 20]);
 		// echo "last inserted id was $lid";
@@ -46,6 +45,10 @@
 		// $results = $db->selectSingle('*', "WHERE idade = ?", [20]);
 		// echo "select single: ";
 		// print_r($results);
+
+	});
+
+	Route::add('/auth', function() {
 
 	});
 

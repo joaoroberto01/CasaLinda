@@ -3,8 +3,8 @@
 	if($_POST){
 		$username = $_POST['username'];
 
-		$db = new DBController('Users');
-		$results = $db->selectSingle("id, email, name", "WHERE email = ? OR username = ?", [$username, $username]);
+		$userController = new UserController();
+		$results = $userController->selectSingle("id, email, name", "WHERE email = ? OR username = ?", [$username, $username]);
 		if($results){
 			$code = generateCode();
 			$results = array_merge($results, ['code' => $code]);

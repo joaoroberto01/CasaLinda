@@ -4,5 +4,5 @@
 
 	require_once CLASSES_PATH . 'Route.php';
 	require_once CLASSES_PATH . 'View.php';
-	require_once CLASSES_PATH . 'DBController.php';
+	require_once CONTROLLERS_PATH . 'UserController.php';
 ?>

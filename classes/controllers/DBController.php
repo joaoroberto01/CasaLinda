@@ -1,6 +1,6 @@
 <?php
 
-    class DBController {
+    abstract class DBController {
         const HOST = 'localhost';
         const DB_NAME = 'casa_linda';
         const DB_USER = 'root';

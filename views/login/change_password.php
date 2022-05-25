@@ -10,9 +10,9 @@
 
 		$password = sha1($_POST['password']);
 
-		$db = new DBController('Users');
+		$userController = new UserController();
 		
-		$db->update(['password' => $password], "WHERE id = ?", [$userInfo['id']]);
+		$userController->update(['password' => $password], "WHERE id = ?", [$userInfo['id']]);
 		$updated = true;
 	}
 ?>

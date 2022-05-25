@@ -1,7 +1,11 @@
 :root {
 	--background-color: #FFE6D2;
 	--text-color: #F38723;
+  --light-black: #1B1B1B;
   --btn-hover-color: #DA6E0A;
+  --logout-background-color: rgba(255, 79, 79, 0.44);
+  --logout-hover-background-color: rgba(255, 79, 79, 0.88);
+
 	--default-font: SF-Regular;
 }
 
