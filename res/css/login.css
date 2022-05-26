@@ -1,0 +1,42 @@
+@import url("variables.css");
+
+img {
+    margin-bottom: 10%;
+    width: 90%;
+    max-width: 400px;
+}
+
+form {
+    padding: 0 10%;
+}
+
+button {
+    font-weight: bold !important;
+}
+
+input {
+    color: var(--light-gray) !important;
+    border: 0 !important;
+    border-radius: 8px !important;
+    box-shadow: 0px 1px 27px -12px rgba(0, 0, 0, 0.15);
+    width: 207px;
+    height: 45px;
+}
+
+::placeholder {
+    color: var(--light-gray) !important; 
+}
+
+#login-container {
+    max-width: 400px;
+    margin-top: 8%;
+}
+
+.btn-login {
+    color: white !important;
+    width: 100%;
+}
+
+.btn-login:hover {
+    background-color: var(--btn-hover-color) !important;
+}

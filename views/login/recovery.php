@@ -26,33 +26,12 @@
 	<title><?=PROJECT_NAME?> - Login</title>
 
 	<link rel="stylesheet" href="<?=BS_CSS_PATH?>">
-	<link rel="stylesheet" href="<?=VARIABLES_CSS_PATH?>">
 	<link rel="stylesheet" type="text/css" href="<?=DEFAULT_CSS_PATH?>">
+	<link rel="stylesheet" href="<?=CSS_PATH?>/recovery.css">
 
-	<style type="text/css">
-		form {
-			padding: 0 10%;
-		}
-
-		button {
-			font-weight: bold !important;
-		}
-
-		#forgot-container {
-			max-width: 400px;
-			margin-top: 10%;
-		}
-
-		.btn-login {
-			color: white !important;
-			width: 100%;
-		}
-
-		.btn-login:hover {
-			background-color: var(--btn-hover-color) !important;
-		}
-	</style>
 </head>
+
+
 <body>
 	<div class="container-fluid">
 		<div class="row d-flex justify-content-center">
@@ -62,6 +41,7 @@
 			?>
 			<div id="forgot-container" class="col-sm-3 col-md-6 col-lg-4 text-center">
 				<h2><b>Insira o código</b></h2>
+				<p>Um código para recuperação foi enviado para o email abc*****@gmail.com. Siga as instruções necessárias.</p>
 				<form class="text-center mt-4" method="POST">
 					<input class="form-control no-border" type="text" name="code" placeholder="Código">
 					<button class="btn btn-login default-background-color mt-4">Enviar</button>
