@@ -1,0 +1,31 @@
+@import url("variables.css");
+
+a:link { text-decoration: none; }
+a:visited { text-decoration: none; }
+a:hover { text-decoration: none; }
+a:active { text-decoration: none; }
+
+h2 {
+    font-weight: bold;
+    color: #FF7A0B;
+}
+
+h6 { 
+    font-weight: bold;
+    color: var(--card-background);
+}
+
+span {
+    font-weight: bold;
+
+}
+
+.go-back-btn {
+    background-color: #FFF1E3;
+    border-radius: 20px;
+    padding: 5px;
+}
+
+.sidebar {
+    background-color: var(--card-selected);
+}

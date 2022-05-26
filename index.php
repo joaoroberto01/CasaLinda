@@ -25,6 +25,10 @@
 		View::render('login/change_password', ['userInfo' => $userInfo]);
 	});
 
+	Route::add('/produtos', function() {
+		View::render('products/products');
+	});
+
 	Route::add('/db', function() {
 		$db = new UserController();
 
