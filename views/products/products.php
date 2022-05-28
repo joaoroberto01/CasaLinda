@@ -26,9 +26,9 @@
 <body>
     <div class="container-fluid h-100">
         <div class="row h-100">
-            <div class="col-2 p-4 sidebar">
+            <div class="col-lg-3 col-md-12 p-4 sidebar">
                 <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2">
-                    <a class="go-back-btn" href="<?= ROOT_PATH ?>"><i class="arrow-icon" data-feather="arrow-left"></i></a>
+                    <a class="btn-round" href="<?= ROOT_PATH ?>"><i data-feather="arrow-left"></i></a>
 
                     <div class="d-flex align-items-center pb-3 mb-md-0 me-md-auto">
                         <span class="d-none d-sm-inline" style="margin-top: 50px;">Visão Geral</span>
@@ -53,19 +53,19 @@
                 </div>
             </div>
 
-
-
-            <div class="col">
+            <div class="col-lg-9">
                 <nav class="navbar p-4">
                     <div class="d-flex justify-content-center align-items-center">
                         <h1 class="navbar-brand">Produtos</h1>
-                        <a href="#" class="new-product-btn d-flex justify-content-center align-items-center" style="padding: 3px"><i data-feather="plus"></i></a>
+                        <a href="" class="btn-round dark-hover d-flex justify-content-center align-items-center" data-bs-toggle="modal" data-bs-target="#newProductModal">
+                            <i data-feather="plus"></i>
+                        </a>
                     </div>
 
 
-                    <div class="d-flex" style="padding: 12px">
+                    <div class="d-flex my-sm-2">
                         <input class="form-control no-border" type="search" placeholder="Pesquisar">
-                        <button class="btn search-btn my-2 my-sm-0" type="submit"><i data-feather="search"></i></button>
+                        <button class="btn btn-search" type="submit"><i data-feather="search"></i></button>
 
                         <div class="dropdown">
                             <a class="btn dropdown-toggle drpdwn" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
@@ -82,7 +82,7 @@
                 </nav>
 
 
-                <table class="table table-borderless table-css" style="padding-left: 90px !important; padding-top: 30px !important">
+                <table class="table-borderless table-css">
                     <thead>
                         <tr>
                             <th class="cod-space" scope="col">Cod#</th>
@@ -100,7 +100,7 @@
                             <td>Otto</td>
                             <td>@mdo</td>
                             <td>R$350,00</td>
-                            <td><a href=""><i data-feather="edit-2"></i></a></td>
+                            <td><a href=""><i data-feather="more-vertical"></i></a></td>
 
                         </tr>
                         <tr>
@@ -109,7 +109,7 @@
                             <td>Thornton</td>
                             <td>@fat</td>
                             <td>R$350,00</td>
-                            <td><a href=""><i data-feather="more-horizontal"></i></a></td>
+                            <td><a href=""><i data-feather="more-vertical"></i></a></td>
                         </tr>
                         <tr>
                             <th scope="row">3</th>
@@ -125,12 +125,44 @@
     </div>
 
 
-    <script>
-        feather.replace()
-    </script>
+    <div class="modal fade" id="newProductModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Novo Produto</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-8">
+                            <input class="form-control" name="" placeholder="Nome">
+                            <select class="form-control">
+                                <option>Selecione uma categoria</option>
+                                <option>Cozinha</option>
+                                <option>Banheiro</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary">Criar</button>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="<?= BS_JS_PATH ?>"></script>
+
+<script>
+    feather.replace()
+</script>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="<?= BS_JS_PATH ?>"></script>
 
 </body>
 
