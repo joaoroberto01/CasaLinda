@@ -57,8 +57,12 @@
 
             <div class="col">
                 <nav class="navbar p-4">
-                    <h1 class="navbar-brand">Produtos <a class="new-product-btn"><i style="padding: 0" data-feather="plus"></i></a></h1>
-                    
+                    <div class="d-flex justify-content-center align-items-center">
+                        <h1 class="navbar-brand">Produtos</h1>
+                        <a href="#" class="new-product-btn d-flex justify-content-center align-items-center" style="padding: 3px"><i data-feather="plus"></i></a>
+                    </div>
+
+
                     <div class="d-flex" style="padding: 12px">
                         <input class="form-control no-border" type="search" placeholder="Pesquisar">
                         <button class="btn search-btn my-2 my-sm-0" type="submit"><i data-feather="search"></i></button>
@@ -69,13 +73,53 @@
                             </a>
 
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                <li><a class="dropdown-item" href="#">Cozinha</a></li>
+                                <li><a class="dropdown-item" href="#">Banheiro</a></li>
+                                <li><a class="dropdown-item" href="#">Sala de estar</a></li>
                             </ul>
                         </div>
                     </div>
                 </nav>
+
+
+                <table class="table table-borderless table-css" style="padding-left: 90px !important; padding-top: 30px !important">
+                    <thead>
+                        <tr>
+                            <th class="cod-space" scope="col">Cod#</th>
+                            <th class="name-space" scope="col">Nome</th>
+                            <th class="ctg-space" scope="col">Categoria</th>
+                            <th class="qtd-space" scope="col">Quantidade</th>
+                            <th scope="col">Valor</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                            <td>R$350,00</td>
+                            <td><a href=""><i data-feather="edit-2"></i></a></td>
+
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            <td>@fat</td>
+                            <td>R$350,00</td>
+                            <td><a href=""><i data-feather="more-horizontal"></i></a></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td colspan="2">Larry the Bird</td>
+                            <td>@twitter</td>
+                            <td>R$350,00</td>
+                            <td><a href=""><i data-feather="more-vertical"></i></a></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

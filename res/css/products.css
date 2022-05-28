@@ -93,3 +93,32 @@ input {
 .sidebar {
     background-color: var(--card-selected);
 }
+
+/* .table-css {
+    background-color: var(--card-selected);
+} */
+
+table {
+    border-collapse: separate !important;
+    border-spacing: 50px 0 !important;
+}
+
+th.qtd-space {
+    height: 40px !important;
+    width: 103px !important;
+}
+
+th.cod-space {
+    height: 24px !important;
+    width: 40px !important;
+}
+
+th.name-space {
+    height: 24px !important;
+    width: 220px !important;
+}
+
+th.ctg-space {
+    height: 24px !important;
+    width: 240px !important;
+}
