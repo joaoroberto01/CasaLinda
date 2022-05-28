@@ -1,11 +1,18 @@
 @import url("variables.css");
 
-body {
-	background-color: var(--background-color);
+* {
 	font-family: var(--default-font);
 }
 
-.no-border:focus, .no-border:active, no-border:visited {
+body {
+	background-color: var(--background-color);
+}
+
+.no-border:focus, .no-border:active, .no-border:visited {
+	box-shadow: none !important;
+}
+
+.default-border:focus, .default-border:active, .default-border:visited {
 	box-shadow: none !important;
 	border: var(--text-color) solid 3px !important;
 }

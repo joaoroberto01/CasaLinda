@@ -28,12 +28,10 @@
         <div class="row h-100">
             <div class="col-2 p-4 sidebar">
                 <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2">
-                    <div class="go-back-btn">
-                        <a href="<?= ROOT_PATH ?>"><i data-feather="arrow-left"></i></a>
-                    </div>
+                    <a class="go-back-btn" href="<?= ROOT_PATH ?>"><i class="arrow-icon" data-feather="arrow-left"></i></a>
 
-                    <div class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-decoration-none">
-                        <span class="fs-5 d-none d-sm-inline" style="margin-top: 50px;">Visão Geral</span>
+                    <div class="d-flex align-items-center pb-3 mb-md-0 me-md-auto">
+                        <span class="d-none d-sm-inline" style="margin-top: 50px;">Visão Geral</span>
                     </div>
                     <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                         <li class="nav-item" style="margin-top: 10%;">
@@ -59,14 +57,15 @@
 
             <div class="col">
                 <nav class="navbar p-4">
-                    <h1 class="navbar-brand">Navbar</h1>
-                    <div class="d-flex">
-                        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    <h1 class="navbar-brand">Produtos <a class="new-product-btn"><i style="padding: 0" data-feather="plus"></i></a></h1>
+                    
+                    <div class="d-flex" style="padding: 12px">
+                        <input class="form-control no-border" type="search" placeholder="Pesquisar">
+                        <button class="btn search-btn my-2 my-sm-0" type="submit"><i data-feather="search"></i></button>
 
                         <div class="dropdown">
-                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                Dropdown link
+                            <a class="btn dropdown-toggle drpdwn" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                Categorias
                             </a>
 
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">

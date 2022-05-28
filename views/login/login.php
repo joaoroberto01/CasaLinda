@@ -32,8 +32,8 @@ if ($_POST){
 			<div id="login-container" class="col-sm-3 col-md-6 col-lg-4 text-center">
 				<img src="<?=IMG_PATH?>/logo.svg">
 				<form class="text-center mt-4" method="POST">
-					<input class="username-input form-control no-border" type="text" name="username" placeholder="Usuário">
-					<input class="password-input form-control no-border mt-3" type="password" name="password" placeholder="Senha"
+					<input class="username-input form-control default-border" type="text" name="username" placeholder="Usuário">
+					<input class="password-input form-control default-border mt-3" type="password" name="password" placeholder="Senha"
 					style="margin-bottom: 8%">
 					<button class="btn btn-login default-background-color mt-4">Entrar</button><br>
 					<a class="default-text-color" href="<?=ROOT_PATH?>forgot">Esqueci minha senha</a>
