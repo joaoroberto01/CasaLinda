@@ -9,24 +9,36 @@
 		View::render('login/login');
 	});
 
-	Route::add('/forgot', function() {
+	Route::add('/esqueci', function() {
 		View::render('login/forgot');
 	});
 
-	Route::add('/recovery', function() {
+	Route::add('/recuperar', function() {
 		header("Location: forgot");
 	});
 
-	Route::add('/recovery/(.+)', function($userInfo) {
+	Route::add('/recuperar/(.+)', function($userInfo) {
 		View::render('login/recovery', ['userInfo' => $userInfo]);
 	});
 
-	Route::add('/changepassword/(.+)', function($userInfo) {
+	Route::add('/alterar_senha/(.+)', function($userInfo) {
 		View::render('login/change_password', ['userInfo' => $userInfo]);
 	});
 
 	Route::add('/produtos', function() {
 		View::render('products/products');
+	});
+
+	Route::add('/relatorios',function() {
+		view::render('reports/reports');
+	});
+
+	Route::add('/movimentos',function() {
+		view::render('movements/movements');
+	});
+
+	Route::add('/historico',function() {
+		view::render('history/history');
 	});
 
 	Route::add('/db', function() {
