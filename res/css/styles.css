@@ -19,4 +19,9 @@ body {
 
 input, .btn {
 	border-radius: 8px !important;
+	border: 0 !important;
+}
+
+input:focus, input:active, input:visited {
+	box-shadow: none !important;
 }

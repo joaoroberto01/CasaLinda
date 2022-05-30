@@ -10,7 +10,7 @@
 			$results = array_merge($results, ['code' => $code]);
 
 			$json = json_encode($results);
-			header('Location: recovery/' . base64_encode($json));
+			header('Location: recuperar/' . base64_encode($json));
 		}
 	}
 ?>

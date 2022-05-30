@@ -1,5 +1,9 @@
 @import url("variables.css");
 
+html, body {
+    height: 100%;
+}
+
 h1 {
     font-weight: bold;
     font-size: 2em !important;
@@ -23,13 +27,17 @@ span {
     color: #d35a36;
 }
 
-input {
+input.search {
     color: var(--light-gray) !important;
     border: 0 !important;
     border-radius: 8px 0 0 8px !important;
     box-shadow: 0px 1px 27px -12px rgba(0, 0, 0, 0.15);
     width: 200px;
     height: 45px;
+}
+
+.nav-item {
+    margin-top: 10%;
 }
 
 .btn-round {
@@ -96,7 +104,7 @@ table {
     border-spacing: 50px 0 !important;
 }
 
-th.qtd-space {
+/*th.qtd-space {
     height: 40px !important;
     width: 103px !important;
 }
@@ -114,4 +122,8 @@ th.name-space {
 th.ctg-space {
     height: 24px !important;
     width: 240px !important;
+}*/
+
+a.details {
+    cursor: pointer;
 }

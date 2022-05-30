@@ -10,7 +10,7 @@
 	if($_POST){
 		if($_POST['code'] == $code){
 			$json = json_encode($userInfo);
-			header("Location: " . ROOT_PATH . "changepassword/" . base64_encode($json));
+			header("Location: " . ROOT_PATH . "alterar_senha/" . base64_encode($json));
 		}
 	}else{
 		if($code)
@@ -28,10 +28,7 @@
 	<link rel="stylesheet" href="<?=BS_CSS_PATH?>">
 	<link rel="stylesheet" type="text/css" href="<?=DEFAULT_CSS_PATH?>">
 	<link rel="stylesheet" href="<?=CSS_PATH?>/recovery.css">
-
 </head>
-
-
 <body>
 	<div class="container-fluid">
 		<div class="row d-flex justify-content-center">

@@ -36,7 +36,7 @@ if ($_POST){
 					<input class="password-input form-control default-border mt-3" type="password" name="password" placeholder="Senha"
 					style="margin-bottom: 8%">
 					<button class="btn btn-login default-background-color mt-4">Entrar</button><br>
-					<a class="default-text-color" href="<?=ROOT_PATH?>forgot">Esqueci minha senha</a>
+					<a class="default-text-color" href="<?=ROOT_PATH?>esqueci">Esqueci minha senha</a>
 				</form>
 			</div>
 		</div>
