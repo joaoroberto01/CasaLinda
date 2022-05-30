@@ -1,6 +1,7 @@
 @import url("variables.css");
 
-html, body {
+html,
+body {
     height: 100%;
 }
 
@@ -16,7 +17,7 @@ h2 {
     color: #d35a36;
 }
 
-h6 { 
+h6 {
     font-weight: bold;
     color: #b1624a;
 }
@@ -57,8 +58,8 @@ input.search {
     margin-right: 5%;
 
     background-color: var(--dark-orange);
-    border-radius: 0  12px 12px 0 !important;
-    color: #FFF1E3 !important;   
+    border-radius: 0 12px 12px 0 !important;
+    color: #FFF1E3 !important;
 }
 
 .btn-search:hover {
@@ -88,7 +89,7 @@ input.search {
 }
 
 ::placeholder {
-    color: var(--light-gray) !important; 
+    color: var(--light-gray) !important;
 }
 
 .sidebar {
@@ -96,7 +97,7 @@ input.search {
 }
 
 /* .table-css {
-    background-color: var(--card-selected);
+    
 } */
 
 table {
@@ -126,4 +127,42 @@ th.ctg-space {
 
 a.details {
     cursor: pointer;
+}
+
+.input-product-name {
+    color: var(--light-gray) !important;
+    /* border: 0 !important; */
+    border: 2px solid rgb(239, 239, 239) !important;
+    border-radius: 8px !important;
+    box-shadow: 0px 1px 27px -12px rgba(0, 0, 0, 0.15);
+    width: 207px;
+    height: 45px;
+}
+
+.category-select {
+    color: var(--light-gray) !important;
+    /* border: 0 !important; */
+    border: 2px solid rgb(239, 239, 239) !important;
+    border-radius: 8px !important;
+    box-shadow: 0px 1px 27px -12px rgba(0, 0, 0, 0.15);
+    width: 240px;
+    height: 45px;
+}
+
+.desc-textarea {
+    color: var(--light-gray) !important;
+    /* border: 0 !important; */
+    border: 2px solid rgb(239, 239, 239) !important;
+    border-radius: 8px !important;
+    box-shadow: 0px 1px 27px -12px rgba(0, 0, 0, 0.15);
+    width: 400px;
+    height: 70px;
+}
+
+.upload-btn {
+    background-color: var(--text-color) !important;
+}
+
+.preview {
+    max-width: 50%;
 }
