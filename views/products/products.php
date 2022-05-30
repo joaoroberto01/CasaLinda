@@ -14,6 +14,7 @@
 
     <script src="<?= JS_PATH ?>/feather.min.js"></script>
 </head>
+
 <body>
     <div class="container-fluid h-100">
         <div class="row h-100">
@@ -74,7 +75,7 @@
 
 
                 <div class="table-responsive">
-                    <table class="table table-borderless">
+                    <table class="table table-css table-borderless">
                         <thead>
                             <tr>
                                 <th class="cod-space" scope="col">Cod#</th>
@@ -101,18 +102,14 @@
                                 <td>Thornton</td>
                                 <td>@fat</td>
                                 <td>R$350,00</td>
-                                <td><a onclick="productDetails(2)"><i data-feather="more-vertical"></i></a></td>
+                                <td><a class="details" onclick="productDetails(2)"><i data-feather="more-vertical"></i></a></td>
                             </tr>
                             <tr>
                                 <th scope="row">3</th>
                                 <td colspan="2">Larry the Bird</td>
                                 <td>@twitter</td>
                                 <td>R$350,00</td>
-                                <td>
-                                    <a href="#" onclick="productDetails(3)">
-                                        <i data-feather="more-vertical"></i>
-                                    </a>
-                                </td>
+                                <td><a class="details" onclick="productDetails(3)"><i data-feather="more-vertical"></i></a></td>
                             </tr>
                         </tbody>
                     </table>
@@ -133,25 +130,37 @@
                     <div class="modal-body">
                         <div class="container">
                             <div class="row">
-                                <div class="col p-4">
+                                <div class="col p-3">
                                     <div class="mb-3">
                                         <label for="name" class="form-label">Nome</label>
-                                        <input id="name" type="text" class="form-control default-border" name="name" placeholder="Nome">
+                                        <input required id="name" type="text" class="form-control default-border input-product-name" name="name" placeholder="Nome">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="description" class="form-label">Descrição</label>
+                                        <textarea required id="description" type="text" class="form-control default-border desc-textarea" name="description" placeholder="Descrição"></textarea>
                                     </div>
                                     <div class="mb-3">
                                         <label for="category" class="form-label">Categoria</label>
-                                        <select id="category" class="form-control no-border default-border" name="category">
-                                            <option>Selecione uma categoria</option>
+                                        <select required id="category" class="form-control no-border default-border category-select" placeholder="Selecione uma categoria" name="category">
+                                            <option value="" disabled selected hidden>Selecione uma categoria</option>
                                             <option>Cozinha</option>
                                             <option>Banheiro</option>
+                                            <option>Sala</option>
                                         </select>
                                     </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Adicionar Foto</label>
+                                        <br>
+                                        <label for="image" class="btn btn-success upload-btn"><i data-feather="camera"></i> Escolher</label>
+
+                                        <input id="image" type="file" name="image" accept="image/*" onchange="generatePreview(this)" hidden>
+                                    </div>
+                                    <img class="img-responsive img preview bg-danger">
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal">Cancelar</button>
                         <button type="submit" class="btn btn-primary">Criar</button>
                     </div>
                 </form>
@@ -162,7 +171,7 @@
     <div class="modal fade" id="productDetailsModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form method="POST" action="produtos/atualizar/<?=2?>">
+                <form method="POST" action="produtos/atualizar/<?= 2 ?>">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Detalhes do Produto</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -173,11 +182,11 @@
                                 <div class="col p-4">
                                     <div class="mb-3">
                                         <label for="name" class="form-label">Nome</label>
-                                        <input id="name" class="form-control default-border" name="name" placeholder="Nome">
+                                        <input id="name" class="form-control default-border input-product-name" name="name" placeholder="ex. Copo de vidro">
                                     </div>
                                     <div class="mb-3">
                                         <label for="category" class="form-label">Categoria</label>
-                                        <select id="category" class="form-control no-border default-border" name="category">
+                                        <select id="category" class="form-control no-border default-border category-select" name="category">
                                             <option>Selecione uma categoria</option>
                                             <option>Cozinha</option>
                                             <option>Banheiro</option>
@@ -188,23 +197,31 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <a href="<?= ROOT_PATH?>produtos/remover/<?=2?>" class="btn btn-danger">Remover</a>
-                        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-primary">Alterar</button> 
+                        <a href="<?= ROOT_PATH ?>produtos/remover/<?= 2 ?>" class="btn btn-danger remove-btn">Remover</a>
+                        <button type="submit" class="btn btn-primary">Salvar</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="<?= JS_PATH ?>/jquery.min.js"></script>
     <script src="<?= BS_JS_PATH ?>"></script>
 
     <script>
         feather.replace()
 
-        function productDetails(id){
+        function productDetails(id) {
             $("#productDetailsModal").modal('toggle');
+        }
+
+        function generatePreview(fileInput) {
+            var reader = new FileReader();
+            reader.onload = function() {
+                var preview = document.getElementsByClassName('preview')[0];
+                preview.src = reader.result;
+            };
+            reader.readAsDataURL(fileInput.files[0]);
         }
     </script>
 </body>
