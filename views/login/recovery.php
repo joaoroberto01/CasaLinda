@@ -38,7 +38,7 @@
 			?>
 			<div id="forgot-container" class="col-sm-3 col-md-6 col-lg-4 text-center">
 				<h2><b>Insira o código</b></h2>
-				<p>Um código para recuperação foi enviado para o email abc*****@gmail.com. Siga as instruções necessárias.</p>
+				<p>Um código para recuperação foi enviado para o email <?=hideEmail($userInfo['email'])?>. Siga as instruções necessárias.</p>
 				<form class="text-center mt-4" method="POST">
 					<input class="form-control no-border" type="text" name="code" placeholder="Código">
 					<button class="btn btn-login default-background-color mt-4">Enviar</button>

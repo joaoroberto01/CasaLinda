@@ -18,6 +18,29 @@ function generateCode(){
 	return implode('', $random);
 }
 
+function hideEmail($email){
+	$encodedEmail = explode("@", $email);
+
+	$emailFirstHalf = $encodedEmail[0];
+	$emailSecondHalf = $encodedEmail[1];
+
+	$count = strlen($emailFirstHalf);
+
+	if ($count > 3)
+		$count = 3;
+
+	$encodedEmail = "";
+	for($i = 0; $i < $count; $i++)
+		$encodedEmail .= $emailFirstHalf[$i];
+
+	for ($i = 0; $i < strlen($emailFirstHalf) - $count; $i++)
+		$encodedEmail .= "*";
+
+	$encodedEmail .= "@" . $emailSecondHalf;
+
+	return $encodedEmail;
+}
+
 function sendRecoveryEmail($to, $name, $code){
 	$altBody = "Olá, $name! Seu código de segurança é: " . $code;
 

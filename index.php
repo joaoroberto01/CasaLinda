@@ -76,7 +76,7 @@
 		// echo "select single: ";
 		// print_r($results);
 
-	});
+	}, false);
 
 	Route::add('/logout', function() {
 		setcookie('user', null, -1);
