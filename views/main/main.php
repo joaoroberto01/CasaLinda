@@ -96,7 +96,7 @@ require_once "utils/utils.php";
 	
 	<script src="<?=BS_JS_PATH?>"></script>
 	<script type="text/javascript">
-		const INACTIVITY_TIME = <?= INACTIVITY_TIME?>;
+		const INACTIVITY_TIME = <?= INACTIVITY_TIME?>;	
 		const START_TIME = 5;
 		var time;
 		var startTime;
@@ -133,6 +133,9 @@ require_once "utils/utils.php";
 				timer.style.opacity = '1';
 
 				time--;
+				if(time == -1){
+					window.location = "logout";
+				}
 			}else{
 				startTime--;
 				timer.style.opacity = '0';

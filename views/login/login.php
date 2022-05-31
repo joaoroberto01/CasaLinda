@@ -28,6 +28,10 @@ if ($_POST){
 </head>
 <body>
 	<div class="container-fluid">
+	<?php
+		if($_POST)
+			echo "<div class='alert alert-danger'>Usuário ou senha incorretos!</div>";
+	?>
 		<div class="row d-flex justify-content-center">
 			<div id="login-container" class="col-sm-3 col-md-6 col-lg-4 text-center">
 				<img src="<?=IMG_PATH?>/logo.svg">
