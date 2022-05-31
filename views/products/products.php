@@ -22,8 +22,8 @@
                 <div class="d-flex flex-column align-items-start px-3 pt-2">
                     <a class="btn-round" href="<?= ROOT_PATH ?>"><i data-feather="arrow-left"></i></a>
 
-                    <div class="d-flex pb-3">
-                        <span class="d-sm-inline" style="margin-top: 50px;">Visão Geral</span>
+                    <div class="d-flex mt-5 pb-3">
+                        <h2>Visão Geral</span>
                     </div>
                     <ul class="nav nav-pills flex-column align-items-start" id="menu">
                         <li class="nav-item">
@@ -57,7 +57,7 @@
 
                     <div class="d-flex my-sm-2">
                         <input class="form-control search no-border" type="search" placeholder="Pesquisar">
-                        <button class="btn btn-search" type="submit"><i data-feather="search"></i></button>
+                        <button class="btn btn-dark btn-search" type="submit"><i data-feather="search"></i></button>
 
                         <div class="dropdown">
                             <a class="btn dropdown-toggle drpdwn" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
@@ -78,18 +78,18 @@
                     <table class="table table-css table-borderless">
                         <thead>
                             <tr>
-                                <th class="cod-space" scope="col">Cod#</th>
-                                <th class="name-space" scope="col">Nome</th>
-                                <th class="ctg-space" scope="col">Categoria</th>
-                                <th class="qtd-space" scope="col">Quantidade</th>
-                                <th scope="col">Valor</th>
-                                <th scope="col"></th>
+                                <th>Código</th>
+                                <th>Nome</th>
+                                <th>Categoria</th>
+                                <th>Quantidade</th>
+                                <th>Valor Base</th>
+
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
+                                <th>1</th>
+                                <td>Aspirador de Pó</td>
                                 <td>Otto</td>
                                 <td>@mdo</td>
                                 <td>R$350,00</td>
@@ -119,7 +119,7 @@
     </div>
 
     <div class="modal fade" id="newProductModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <form method="POST" action="produtos/criar">
                     <div class="modal-header">
@@ -130,38 +130,45 @@
                     <div class="modal-body">
                         <div class="container">
                             <div class="row">
-                                <div class="col p-3">
-                                    <div class="mb-3">
-                                        <label for="name" class="form-label">Nome</label>
-                                        <input required id="name" type="text" class="form-control default-border input-product-name" name="name" placeholder="Nome">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="description" class="form-label">Descrição</label>
-                                        <textarea required id="description" type="text" class="form-control default-border desc-textarea" name="description" placeholder="Descrição"></textarea>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="category" class="form-label">Categoria</label>
-                                        <select required id="category" class="form-control no-border default-border category-select" placeholder="Selecione uma categoria" name="category">
-                                            <option value="" disabled selected hidden>Selecione uma categoria</option>
-                                            <option>Cozinha</option>
-                                            <option>Banheiro</option>
-                                            <option>Sala</option>
-                                        </select>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Adicionar Foto</label>
-                                        <br>
-                                        <label for="image" class="btn btn-success upload-btn"><i data-feather="camera"></i> Escolher</label>
-
-                                        <input id="image" type="file" name="image" accept="image/*" onchange="generatePreview(this)" hidden>
-                                    </div>
-                                    <img class="img-responsive img preview bg-danger">
+                                <div class="col-6 mb-3">
+                                    <label for="name" class="form-label">Nome</label>
+                                    <input required id="name" type="text" class="form-control modal-input default-border" name="name" placeholder="Nome">
                                 </div>
+                                <div class="col-6 mb-3">
+                                    <label for="category" class="form-label">Categoria</label>
+                                    <select required id="category" class="form-control modal-input no-border default-border" placeholder="Selecione uma categoria" name="category">
+                                        <option value="" disabled selected hidden>Selecione uma categoria</option>
+                                        <option>Cozinha</option>
+                                        <option>Banheiro</option>
+                                        <option>Sala</option>
+                                    </select>
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label for="description" class="form-label">Descrição</label>
+                                    <textarea required id="description" type="text" class="form-control modal-input default-border desc-textarea" name="description" placeholder="Descrição"></textarea>
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <label for="amount" class="form-label">Quantidade</label>
+                                    <input required id="amount" type="number" class="form-control modal-input default-border" name="amount" placeholder="Quantidade">
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <label for="price" class="form-label">Valor Base (R$)</label>
+                                    <input required id="price" type="number" class="form-control modal-input default-border" name="amount" placeholder="Valor Base (R$)">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Adicionar Foto</label>
+                                    <br>
+                                    <label for="image" class="btn btn-success upload-btn"><i data-feather="camera"></i> Escolher</label>
+
+                                    <input id="image" type="file" name="image" accept="image/*" onchange="generatePreview(this)" hidden>
+                                </div>
+                                <img class="img-responsive img preview">
+                                
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Criar</button>
+                        <button type="submit" class="btn btn-dark">Criar</button>
                     </div>
                 </form>
             </div>
@@ -169,7 +176,7 @@
     </div>
 
     <div class="modal fade" id="productDetailsModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <form method="POST" action="produtos/atualizar/<?= 2 ?>">
                     <div class="modal-header">
@@ -179,20 +186,40 @@
                     <div class="modal-body">
                         <div class="container">
                             <div class="row">
-                                <div class="col p-4">
-                                    <div class="mb-3">
-                                        <label for="name" class="form-label">Nome</label>
-                                        <input id="name" class="form-control default-border input-product-name" name="name" placeholder="ex. Copo de vidro">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="category" class="form-label">Categoria</label>
-                                        <select id="category" class="form-control no-border default-border category-select" name="category">
-                                            <option>Selecione uma categoria</option>
-                                            <option>Cozinha</option>
-                                            <option>Banheiro</option>
-                                        </select>
-                                    </div>
+                                <div class="col-6 mb-3">
+                                    <label for="name" class="form-label">Nome</label>
+                                    <input required id="name" type="text" class="form-control modal-input default-border" name="name" placeholder="Nome">
                                 </div>
+                                <div class="col-6 mb-3">
+                                    <label for="category" class="form-label">Categoria</label>
+                                    <select required id="category" class="form-control modal-input no-border default-border" placeholder="Selecione uma categoria" name="category">
+                                        <option value="" disabled selected hidden>Selecione uma categoria</option>
+                                        <option>Cozinha</option>
+                                        <option>Banheiro</option>
+                                        <option>Sala</option>
+                                    </select>
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label for="description" class="form-label">Descrição</label>
+                                    <textarea required id="description" type="text" class="form-control modal-input default-border desc-textarea" name="description" placeholder="Descrição"></textarea>
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <label for="amount" class="form-label">Quantidade</label>
+                                    <input required id="amount" type="number" class="form-control modal-input default-border" name="amount" placeholder="Quantidade">
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <label for="price" class="form-label">Valor Base (R$)</label>
+                                    <input required id="price" type="number" class="form-control modal-input default-border" name="amount" placeholder="Valor Base (R$)">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Adicionar Foto</label>
+                                    <br>
+                                    <label for="image" class="btn btn-success upload-btn"><i data-feather="camera"></i> Escolher</label>
+
+                                    <input id="image" type="file" name="image" accept="image/*" onchange="generatePreview(this)" hidden>
+                                </div>
+                                <img class="img-responsive img preview">
+                                
                             </div>
                         </div>
                     </div>
@@ -208,9 +235,9 @@
     <script src="<?= JS_PATH ?>/jquery.min.js"></script>
     <script src="<?= BS_JS_PATH ?>"></script>
 
-    <script>
-        feather.replace()
+    <script>feather.replace();</script>
 
+    <script type="text/javascript">
         function productDetails(id) {
             $("#productDetailsModal").modal('toggle');
         }

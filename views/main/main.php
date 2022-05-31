@@ -89,8 +89,7 @@ require_once "utils/utils.php";
 			</div>
 		</div>
 	</div>
-
-	<footer class="footer text-center p-3">
+	<footer class="fixed-bottom text-center p-3">
 		Casa Linda by Peer © 2022. All Rights Reserved
 	</footer>
 	

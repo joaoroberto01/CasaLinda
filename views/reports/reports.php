@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Produtos</title>
+    <title>Relatórios</title>
 
 
     <link rel="stylesheet" href="<?= BS_CSS_PATH ?>">
@@ -23,7 +23,7 @@
                         <i data-feather="arrow-left"></i>
                     </a>
                 </div>
-                <div class="d-flex flex-column align-items-center px-3 pt-2 h-100">
+                <div class="d-flex flex-column align-items-center px-3 pt-2">
                     <div class="flex-column align-items-center justify-content-center text-center" style="margin: 5% 0%;">
                         <h2>Relatório</h2>
                     </div>
@@ -44,56 +44,163 @@
                         </li>
                     </ul>
 
-                    <button class="btn btn-download">
+                    <button class="btn btn-download" onclick="generatePDF()">
                         <i data-feather="download"></i> Baixar PDF
                     </button>
                 </div>
             </div>
 
-            <div class="col-lg-9 pt-5">
+            <div class="col-lg-9 p-3 h-100">
+                <div class="card p-4 h-100">
+                    <div class="d-flex" style="justify-content: space-between;">
+                        <h5>Data Inicial: <?= date('d/m/Y') ?></h5>
+                        <h5> Data Final: <?= date('d/m/Y') ?></h5>
+                    </div>
+                    <hr>
+                    <div class="table-responsive">
+                        <table class="table table-borderless">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Data</th>
+                                    <th scope="col">Código</th>
+                                    <th scope="col">Produto</th>
+                                    <th scope="col">Quantidade</th>
+                                    <th scope="col">Valor</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-body">
+                                <tr>
+                                    <th scope="row">xx/xx/xxxx</th>
+                                    <td>xxxxxxxxxx</td>
+                                    <td>xxxxxxxxxx</td>
+                                    <td>xxx</td>
+                                    <td>R$xx,xx</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>0101</td>
+                                    <td>copo de Gin</td>
+                                    <td>1</td>
+                                    <td>R$350,00</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td>0102</td>
+                                    <td>Vaso de flor</td>
+                                    <td>2</td>
+                                    <td>R$50,00</td>
+                                    <td>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">xx/xx/xxxx</th>
+                                    <td>xxxxxxxxxx</td>
+                                    <td>xxxxxxxxxx</td>
+                                    <td>xxx</td>
+                                    <td>R$xx,xx</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>0101</td>
+                                    <td>copo de Gin</td>
+                                    <td>1</td>
+                                    <td>R$350,00</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td>0102</td>
+                                    <td>Vaso de flor</td>
+                                    <td>2</td>
+                                    <td>R$50,00</td>
+                                    <td>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">xx/xx/xxxx</th>
+                                    <td>xxxxxxxxxx</td>
+                                    <td>xxxxxxxxxx</td>
+                                    <td>xxx</td>
+                                    <td>R$xx,xx</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>0101</td>
+                                    <td>copo de Gin</td>
+                                    <td>1</td>
+                                    <td>R$350,00</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td>0102</td>
+                                    <td>Vaso de flor</td>
+                                    <td>2</td>
+                                    <td>R$50,00</td>
+                                    <td>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td>0102</td>
+                                    <td>Vaso de flor</td>
+                                    <td>2</td>
+                                    <td>R$50,00</td>
+                                    <td>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">xx/xx/xxxx</th>
+                                    <td>xxxxxxxxxx</td>
+                                    <td>xxxxxxxxxx</td>
+                                    <td>xxx</td>
+                                    <td>R$xx,xx</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>0101</td>
+                                    <td>copo de Gin</td>
+                                    <td>1</td>
+                                    <td>R$350,00</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td>0102</td>
+                                    <td>Vaso de flor</td>
+                                    <td>2</td>
+                                    <td>R$50,00</td>
+                                    <td>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">xx/xx/xxxx</th>
+                                    <td>xxxxxxxxxx</td>
+                                    <td>xxxxxxxxxx</td>
+                                    <td>xxx</td>
+                                    <td>R$xx,xx</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>0101</td>
+                                    <td>copo de Gin</td>
+                                    <td>1</td>
+                                    <td>R$350,00</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td>0102</td>
+                                    <td>Vaso de flor</td>
+                                    <td>2</td>
+                                    <td>R$50,00</td>
+                                    <td>
+                                    </td>
+                                </tr>
 
-                <div class="table-responsive">
-                    <table class="table table-borderless">
-                        <span>Data Inicial:xx/xx/xxxx</span>
-                        <span> Data Final:xx/xx/xxxx</span>
-                        <thead>
-                            <tr>
-                                <th scope="col">Data</th>
-                                <th scope="col">Cód.Prod</th>
-                                <th scope="col">Produto</th>
-                                <th scope="col">Quantidade</th>
-                                <th scope="col">Valor Unit.</th>
-                                <th scope="col"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">xx/xx/xxxx</th>
-                                <td>xxxxxxxxxx</td>
-                                <td>xxxxxxxxxx</td>
-                                <td>xxx</td>
-                                <td>R$xx,xx</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>0101</td>
-                                <td>copo de Gin</td>
-                                <td>1</td>
-                                <td>R$350,00</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>0102</td>
-                                <td>Vaso de flor</td>
-                                <td>2</td>
-                                <td>R$50,00</td>
-                                <td>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
+                    <hr>
+                    <h5>Total: <b>R$500,00</b></h5>
                 </div>
-                <span>Total dos Valores: R$xxx,xx</span>
             </div>
         </div>
     </div>
@@ -180,8 +287,18 @@
     <script>
         feather.replace()
 
-        function productDetails(id){
-            $("#productDetailsModal").modal('toggle');
+        function generatePDF(){
+            //$("#table-body");
+            var docDefinition = {
+                content: [
+                'hello'
+                ]
+            };
+
+
+            var now = new Date();
+
+            pdfmake.createPdf(docDefinition).download();
         }
     </script>
 </body>

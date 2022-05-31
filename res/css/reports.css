@@ -4,53 +4,24 @@ html, body {
     height: 100%;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+    color: var(--dark-orange);
+}
+
 h1 {
-    font-weight: bold;
     font-size: 2em !important;
-    color: #d35a36;
     margin-bottom: 0 !important;
-}
-
-h2 {
-    font-weight: bold;
-    color: #d35a36;
-}
-
-h6 { 
-    font-weight: bold;
-    color: #b1624a;
 }
 
 span {
     font-weight: bold;
     font-size: 25px !important;
-    color: #d35a36;
-}
-
-input.search {
-    color: var(--light-gray) !important;
-    border: 0 !important;
-    border-radius: 8px 0 0 8px !important;
-    box-shadow: 0px 1px 27px -12px rgba(0, 0, 0, 0.15);
-    width: 200px;
-    height: 45px;
+    color: var(--dark-orange);
 }
 
 .nav-item {
     margin-top: 10%;
-}
-
-.btn-round {
-    background-color: var(--dark-orange);
-    border-radius: 20px;
-    padding: 5px;
-
-    color: var(--card-background) !important;
-}
-
-.btn-round:hover {
-    background-color: var(--card-background);
-    color: var(--dark-orange) !important;
 }
 
 .btn-pdf {
@@ -86,20 +57,24 @@ input.search {
     background-color: var(--card-selected);
 }
 
-/* .table-css {
-    background-color: var(--card-selected);
-} */
-
-table {
-    border-collapse: separate !important;
-    border-spacing: 50px 0 !important;
-}
-
 .date{
-    color: #b1624a;
+    color: ;
     background-color: var(--card-background);
 }
 
 a.details {
     cursor: pointer;
+}
+
+.table-responsive {
+    overflow: -moz-scrollbars-vertical !important; 
+    overflow-y: visible !important;
+}
+
+thead {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    /*background-color: var(--dark-orange);*/
+    /*color: white;*/
 }

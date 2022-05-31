@@ -22,6 +22,23 @@ input, .btn {
 	border: 0 !important;
 }
 
+::placeholder {
+    color: var(--light-gray) !important;
+}
+
 input:focus, input:active, input:visited {
 	box-shadow: none !important;
+}
+
+.btn-round {
+    background-color: var(--dark-orange);
+    border-radius: 20px;
+    padding: 5px;
+
+    color: var(--card-background) !important;
+}
+
+.btn-round:hover {
+    background-color: var(--card-background);
+    color: var(--dark-orange) !important;
 }
