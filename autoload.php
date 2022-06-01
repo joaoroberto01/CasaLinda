@@ -7,4 +7,6 @@
 	require_once CLASSES_PATH . 'View.php';
 	require_once CONTROLLERS_PATH . 'UserController.php';
 	require_once CONTROLLERS_PATH . 'ProductController.php';
+	require_once CONTROLLERS_PATH . 'MovementsController.php';
+
 ?>

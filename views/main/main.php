@@ -32,8 +32,8 @@ require_once "utils/utils.php";
 		</nav>
 
 		<div class="row v-space">
-			<div class="offset-2 col-8 offset-md-0 col-md-6 mb-5 mb-lg-0 col-lg-3 p-2 d-flex justify-content-center">
-				<div class="card">
+			<div class="offset-2 col-8 offset-lg-0 mb-5 mb-lg-0 col-lg-4 p-2 d-flex justify-content-center">
+				<div class="card" onclick="goTo('produtos')">
 					<div class="card-img card-selected d-flex align-items-center justify-content-center">
 						<i class="icon" data-feather="package"></i>
 					</div>
@@ -46,8 +46,8 @@ require_once "utils/utils.php";
 				</div>
 			</div>
 
-			<div class="offset-2 col-8 offset-md-0 col-md-6 mb-5 mb-lg-0 col-lg-3 p-2 d-flex justify-content-center">
-				<div class="card">
+			<div class="offset-2 col-8 offset-lg-0 mb-5 mb-lg-0 col-lg-4 p-2 d-flex justify-content-center">
+				<div class="card" onclick="goTo('relatorios')">
 					<div class="card-img card-selected d-flex align-items-center justify-content-center">
 						<i class="icon" data-feather="file-text"></i>
 					</div>
@@ -60,30 +60,16 @@ require_once "utils/utils.php";
 				</div>
 			</div>
 
-			<div class="offset-2 col-8 offset-md-0 col-md-6 mb-5 mb-lg-0 col-lg-3 p-2 d-flex justify-content-center">
-				<div class="card">
+			<div class="offset-2 col-8 offset-lg-0 mb-5 mb-lg-0 col-lg-4 p-2 d-flex justify-content-center">
+				<div class="card" onclick="goTo('movimentos')">
 					<div class="card-img card-selected d-flex align-items-center justify-content-center">
 						<i class="icon" data-feather="repeat"></i>
 					</div>
 
 					<div class="card-body p-4 text-center">
 						<h2 class="card-title text-center">Movimentos</h2>
-						<p class="card-text text-center">Controle a saída ou entrada de produtos.</p>
+						<p class="card-text text-center">Acompanhe e controle a entrada e saída de produtos.</p>
 						<a href="movimentos" class="btn btn-card">Vamos lá</a>
-					</div>
-				</div>
-			</div>
-
-			<div class="offset-2 col-8 offset-md-0 col-md-6 mb-5 mb-lg-0 col-lg-3 p-2 d-flex justify-content-center">
-				<div class="card">
-					<div class="card-img card-selected d-flex align-items-center justify-content-center">
-						<i class="icon" data-feather="clock"></i>
-					</div>
-
-					<div class="card-body p-4 text-center">
-						<h2 class="card-title text-center">Histórico</h2>
-						<p class="card-text text-center">Acompanhe a entrada e saída de produtos.</p>
-						<a href="historico" class="btn btn-card">Vamos lá</a>
 					</div>
 				</div>
 			</div>
@@ -141,6 +127,10 @@ require_once "utils/utils.php";
 				timer.style.opacity = '0';
 			}
 		}, 1000);
+
+		function goTo(link){
+			window.location = link;
+		}
 	</script>
 
 	<script>

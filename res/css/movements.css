@@ -116,3 +116,23 @@ a.details {
 .warning {
     fill: yellow;
 }
+
+.red {
+    background-color: #FF453A !important;
+    color: white !important;
+}
+
+.red:hover {
+    background-color: #F53B30 !important;
+    color: white !important;
+}
+
+.green {
+    background-color: #30D158 !important;
+    color: white !important;
+}
+
+.green:hover {
+    background-color: #34C759 !important;
+    color: white !important;
+}

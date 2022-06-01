@@ -28,8 +28,10 @@ html, body {
     box-shadow: 0px 0px 50px 0px rgba(222, 168, 127, 0.25);
     border-radius: 20px;
     background-color: var(--card-background);
-    width: 85%;
+    width: 70%;
+    min-width: 255px;
     transition: 400ms;
+    cursor: pointer;
 }
 
 @media (min-width: 992px) {

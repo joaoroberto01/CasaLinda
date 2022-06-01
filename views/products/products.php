@@ -20,7 +20,7 @@
 <body>
     <div class="container-fluid h-100">
         <div class="row h-100">
-            <div class="col-lg-3 col-md-12 p-4 sidebar">
+            <div class="col-lg-3 col-xl-3 col-md-12 p-4 sidebar">
                 <div class="d-flex flex-column align-items-start px-3 pt-2">
                     <a class="btn-round" href="<?= ROOT_PATH ?>"><i data-feather="arrow-left"></i></a>
 
@@ -122,10 +122,10 @@
                                 echo "<tr>";
                                 if($amount <= RESTOCK_LIMIT)
                                     echo "<td class='p-1 text-center td-icon'>
-                                            <i class='warning' data-feather='alert-triangle' data-bs-toggle='popover' data-bs-trigger='hover focus' data-bs-placement='left' title='Atenção' data-bs-content='Esse produto precisa ser restocado'></i>
+                                            <i class='warning' data-feather='alert-triangle' data-bs-toggle='popover' data-bs-trigger='hover focus' data-bs-placement='left' title='Atenção' data-bs-content='Restoque necessário!'></i>
                                         </td>";
                                 else
-                                    echo "<td class='td-icon'><i data-feather=''</i></td>";
+                                    echo "<td></td>";
 
                                 echo "<td>$id</td>
                                     <td>${product['name']}</td>

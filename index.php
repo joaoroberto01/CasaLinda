@@ -65,37 +65,35 @@ Route::add('/produtos/remover/([0-9]+)', function($id) {
 });
 
 Route::add('/relatorios',function() {
-	view::render('reports/reports');
+	View::render('reports/reports');
 });
 
 Route::add('/movimentos',function() {
-	view::render('movements/movements');
+	View::render('movements/movements');
+});
+
+Route::add('/movimentos/criar',function() {
+	if($_POST){
+		$_POST['price'] = str_replace(".", "", $_POST['price']);
+		$_POST['price'] = str_replace(",", ".", $_POST['price']);
+		$_POST['price'] = str_replace(" ", "", $_POST['price']);
+		$_POST['price'] = str_replace('R$', "", $_POST['price']);
+
+		$movementsController = new MovementsController();
+		$movementsController->create($_POST);
+	}
+
+	goToRoute("movimentos");
 });
 
 Route::add('/historico',function() {
-	view::render('history/history');
+	View::render('history/history');
 });
 
 Route::add('/db', function() {
-	$db = new UserController();
+	$movementsController = new MovementsController();
+	$movementsController->create(['amount' => 5,'price'=> 50 , 'id_product' => 6, 'type' => "Entrada"]);
 
-   		// $lid = $db->insert(['nome' => "joao", 'idade' => 20]);
-		// echo "last inserted id was $lid";
-	$results = $db->select('*');
-	echo "select all: ";
-	print_r($results);
-
-	echo "<br><br>";
-
-		//$db->update(['idade' => 33, 'nome' => "ALTERADO BABACA"], "WHERE id = ?", [18]);
-	$db->delete("", []);
-
-	$results = $db->select('*');
-	print_r($results);
-
-		// $results = $db->selectSingle('*', "WHERE idade = ?", [20]);
-		// echo "select single: ";
-		// print_r($results);
 
 }, false);
 
