@@ -14,6 +14,7 @@
 
     <script src="<?= JS_PATH ?>/feather.min.js"></script>
 </head>
+
 <body>
     <div class="container-fluid h-100">
         <div class="row h-100">
@@ -37,6 +38,24 @@
                         <li class="nav-item mb-1">
                             <h6>Data Final</h6>
                             <input class="form-control date" type="date">
+                        </li>
+
+
+                        <li class="nav-item type-style">
+                            <h6>Tipo Relatório</h6>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    Entrada
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    Saída
+                                </label>
+                            </div>
                         </li>
 
                         <li class="nav-item text-center">
@@ -246,7 +265,7 @@
     <div class="modal fade" id="productDetailsModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form method="POST" action="produtos/atualizar/<?=2?>">
+                <form method="POST" action="produtos/atualizar/<?= 2 ?>">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Detalhes do Produto</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -272,9 +291,9 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <a href="<?= ROOT_PATH?>produtos/remover/<?=2?>" class="btn btn-danger">Remover</a>
+                        <a href="<?= ROOT_PATH ?>produtos/remover/<?= 2 ?>" class="btn btn-danger">Remover</a>
                         <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-primary">Alterar</button> 
+                        <button type="submit" class="btn btn-primary">Alterar</button>
                     </div>
                 </form>
             </div>
@@ -287,11 +306,11 @@
     <script>
         feather.replace()
 
-        function generatePDF(){
+        function generatePDF() {
             //$("#table-body");
             var docDefinition = {
                 content: [
-                'hello'
+                    'hello'
                 ]
             };
 

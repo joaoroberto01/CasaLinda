@@ -25,6 +25,8 @@ span {
 }
 
 .btn-pdf {
+    width: 167px;
+
     background-color: var(--dark-orange);
     color: var(--card-background) !important;   
 }
@@ -68,6 +70,15 @@ a.details {
 .table-responsive {
     overflow: -moz-scrollbars-vertical !important; 
     overflow-y: visible !important;
+}
+
+.type-style {
+    width: 167px;
+    color: var(--dark-orange);
+}
+
+.form-check-input {
+    background-color: var(--dark-orange) !important;
 }
 
 thead {
