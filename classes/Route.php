@@ -31,7 +31,7 @@ class Route {
 		if($authRequired){
 			$user = json_decode($_COOKIE['user'], true);
 			if(!$user)
-				header("Location: login");
+				goToRoute("login");
 			array_push($params, $user);
 		}
 		

@@ -76,5 +76,15 @@
             $this->execute("DELETE FROM $this->table $where", $params);
         }
 
+        public function rawSelect($query = "", $params = []){
+            $statement = $this->execute($query, $params);
+
+            return $statement->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        public function raw($query = "", $params = []){
+            $statement = $this->execute($query, $params);
+        }
+
     }
 ?>

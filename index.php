@@ -31,16 +31,35 @@ Route::add('/produtos', function() {
 
 Route::add('/produtos/criar', function() {
 	echo "Creating<br>";
+
+	if($_POST){
+		$productController = new ProductController();
+		$productController->create($_POST);
+	}
+
+	goToRoute("produtos");
+});
+
+Route::add('/produtos/detalhes/([0-9]+)', function($id) {
+
+	$productController = new ProductController();
+	echo json_encode($productController->get($id));
 });
 
 Route::add('/produtos/atualizar/([0-9]+)', function($id) {
-	echo "Updating $id<br>";
-	print_r($_POST);
+	if($_POST){
+		$productController = new ProductController();
+		$productController->edit($id, $_POST);
+	}
+
+	goToRoute("produtos");
 });
 
 Route::add('/produtos/remover/([0-9]+)', function($id) {
-	echo "Removing $id<br>";
-	print_r($_POST);
+	$productController = new ProductController();
+	$productController->remove($id);
+
+	goToRoute("produtos");
 });
 
 Route::add('/relatorios',function() {
@@ -84,7 +103,7 @@ Route::add('/pdf', function(){
 
 Route::add('/logout', function() {
 	setcookie('user', null, -1);
-	header('Location: login');
+	goToRoute("login");
 });
 
 Route::dispatch();
