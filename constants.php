@@ -8,6 +8,7 @@
 	# RESOURCES
 	define('BS_CSS_PATH', ROOT_PATH . 'res/bootstrap/css/bootstrap.css');
 	define('BS_JS_PATH', ROOT_PATH . 'res/bootstrap/js/bootstrap.js');
+	define('BS_BUNDLE_JS_PATH', ROOT_PATH . 'res/bootstrap/js/bootstrap.bundle.min.js');
 	define('IMG_PATH', ROOT_PATH . 'res/img');
 	define('CSS_PATH', ROOT_PATH . 'res/css');
 	define('JS_PATH', ROOT_PATH . 'res/js');
@@ -24,4 +25,5 @@
 	define('ERROR_VIEW_PATH', VIEWS_PATH . 'error.php');
 
 	define('INACTIVITY_TIME', 600);
+	define('RESTOCK_LIMIT', 5);
 ?>

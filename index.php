@@ -14,7 +14,7 @@ Route::add('/esqueci', function() {
 }, false);
 
 Route::add('/recuperar', function() {
-	header("Location: esqueci");
+	goToRoute("esqueci");
 }, false);
 
 Route::add('/recuperar/(.+)', function($userInfo) {

@@ -33,7 +33,7 @@ class ProductController extends DBController {
 	}
 
 	public function getRestockNeeded(){
-		return parent::rawSelect("SELECT COUNT(id) as count FROM Products as P INNER JOIN ProductAmount as PA ON (P.id = PA.id_product) WHERE amount <= 5")[0]['count'];
+		return parent::rawSelect("SELECT * FROM Products as P INNER JOIN ProductAmount as PA ON (P.id = PA.id_product) WHERE amount <= ?", [RESTOCK_LIMIT]);
 	}
 
 	public function getBalance(){

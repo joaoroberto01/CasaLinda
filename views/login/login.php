@@ -8,7 +8,7 @@ if ($_POST){
     if($user){
         setcookie('user', json_encode($user), time() + 24 * 3600);
 
-        header("Location: " . ROOT_PATH);
+        goToRoute();
     }
 }
 

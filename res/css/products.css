@@ -101,3 +101,12 @@ a.details {
 .modal-content {
     background-color: var(--card-background);
 }
+
+.td-icon {
+    width: 50px;
+    background-color: red;
+}
+
+.warning {
+    fill: yellow;
+}

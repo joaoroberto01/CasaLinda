@@ -12,7 +12,7 @@ function getGreeting(){
 	return "Bom dia";
 }
 
-function goToRoute($route){
-	header("Location: " . ROOT_PATH . "$route");
+function goToRoute($route = ""){
+	header("Location: " . ROOT_PATH . $route);
 }
 ?>

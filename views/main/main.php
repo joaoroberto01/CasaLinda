@@ -23,7 +23,7 @@ require_once "utils/utils.php";
 					<img src="<?=IMG_PATH?>/logo.svg" width="120">
 				</a>
 
-				<b><?=getGreeting() . ", ${user['name']}!" ?></b>
+				<?=getGreeting() . ", ${user['name']}!" ?>
 				<div class="d-inline-flex align-items-center" style="justify-content: space-between">
 					<span id="timer" class="mr-2"><?=printf("%d:%d", INACTIVITY_TIME / 60, INACTIVITY_TIME % 60)?></span>
 					<a class="btn btn-logout ml-4" href="logout"><i data-feather="log-out"></i> Sair</a>

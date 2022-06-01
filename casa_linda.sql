@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 01/06/2022 às 04:08
+-- Tempo de geração: 01/06/2022 às 19:18
 -- Versão do servidor: 10.4.21-MariaDB
 -- Versão do PHP: 7.4.28
 
@@ -67,7 +67,8 @@ CREATE TABLE `ProductAmount` (
 
 INSERT INTO `ProductAmount` (`id_product`, `amount`) VALUES
 (4, 0),
-(6, 6);
+(6, 0),
+(7, 0);
 
 -- --------------------------------------------------------
 
@@ -78,7 +79,6 @@ INSERT INTO `ProductAmount` (`id_product`, `amount`) VALUES
 CREATE TABLE `Products` (
   `id` int(11) NOT NULL,
   `name` varchar(30) NOT NULL,
-  `price` float NOT NULL DEFAULT 0,
   `description` varchar(100) NOT NULL,
   `category` varchar(20) NOT NULL,
   `image` varchar(50) DEFAULT NULL
@@ -88,9 +88,10 @@ CREATE TABLE `Products` (
 -- Despejando dados para a tabela `Products`
 --
 
-INSERT INTO `Products` (`id`, `name`, `price`, `description`, `category`, `image`) VALUES
-(4, 'Pipoquinha', 5, 'Pipipipipipopopopoca', 'Banheiro', NULL),
-(6, 'Bicicleta', 5, 'Bicicleta Description', 'Sala', NULL);
+INSERT INTO `Products` (`id`, `name`, `description`, `category`, `image`) VALUES
+(4, 'Pipoquinha', 'Pipipipipipopopopoca', 'Banheiro', NULL),
+(6, 'Bicicleta', 'Bicicleta Description', 'Sala', ''),
+(7, 'Pica de Madeira', 'Uma majestosa Pica de Madeira', 'Sala', '');
 
 --
 -- Gatilhos `Products`
@@ -160,13 +161,13 @@ ALTER TABLE `Users`
 -- AUTO_INCREMENT de tabela `Movements`
 --
 ALTER TABLE `Movements`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `Products`
 --
 ALTER TABLE `Products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de tabela `Users`

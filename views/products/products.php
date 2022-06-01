@@ -38,9 +38,21 @@
                             <h2><?="R\$".number_format($productController->getProfit(), 2, ",", ".")?></h2>
                         </li>
 
-                        <li class="nav-item">
+                        <?php
+                            $restockProducts = $productController->getRestockNeeded();
+                            $count = count($restockProducts);
+                            $content = "Os seguintes produtos precisam ser restocados:\n<ul>";
+
+                            foreach($restockProducts as $rp){
+                                $content .= "<li>${rp['name']}</li>";
+                            }
+                            $content .= "</ul>";
+
+                            $popover = "data-bs-toggle='popover' data-bs-trigger='hover focus' data-bs-placement='right' title='Atenção' data-bs-html='true' data-bs-content='$content'";
+                            ?>
+                        <li class="nav-item" <?=$popover?>>
                             <h6>Restoques necessários</h6>
-                            <h2><?=$productController->getRestockNeeded()?></h2>
+                            <h2><?=$count?></h2>
                         </li>
                     </ul>
                     <!-- <hr> -->
@@ -94,6 +106,7 @@
                     <table class="table table-css table-borderless">
                         <thead>
                             <tr>
+                                <th></th>
                                 <th>Código</th>
                                 <th>Nome</th>
                                 <th>Categoria</th>
@@ -105,12 +118,20 @@
 
                             foreach($products as $product){
                                 $id = $product['id'];
-                                echo "<tr>
-                                    <td>$id</td>
+                                $amount = $product['amount'];
+                                echo "<tr>";
+                                if($amount <= RESTOCK_LIMIT)
+                                    echo "<td class='p-1 text-center td-icon'>
+                                            <i class='warning' data-feather='alert-triangle' data-bs-toggle='popover' data-bs-trigger='hover focus' data-bs-placement='left' title='Atenção' data-bs-content='Esse produto precisa ser restocado'></i>
+                                        </td>";
+                                else
+                                    echo "<td class='td-icon'><i data-feather=''</i></td>";
+
+                                echo "<td>$id</td>
                                     <td>${product['name']}</td>
                                     <td>${product['category']}</td>
-                                    <td>${product['amount']}</td>
-                                    <td><a class='details' onclick='productDetails($id)''><i data-feather='more-vertical'></i></a></td>
+                                    <td>$amount</td>
+                                    <td><a class='details' onclick='productDetails($id)'><i data-feather='more-vertical'></i></a></td>
                                     </tr>";
                             }
                             ?>
@@ -220,8 +241,13 @@
 
     <script src="<?= JS_PATH ?>/jquery.min.js"></script>
     <script src="<?= BS_JS_PATH ?>"></script>
+    <script src="<?= BS_BUNDLE_JS_PATH ?>"></script>
 
-    <script>feather.replace();</script>
+    <script>
+        feather.replace();
+        [...document.querySelectorAll('[data-bs-toggle="popover"]')]
+            .forEach(el => new bootstrap.Popover(el))
+    </script>
 
     <script type="text/javascript">
         function productDetails(id) {
