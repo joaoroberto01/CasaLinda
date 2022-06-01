@@ -7,14 +7,9 @@ class ProductController extends DBController {
 	}
 
 	public function create($product){
-		$dict = ['name' => $product['name'], 'category' => $product['category'], 'description' => $product['description'], 'price' => $product['price']];
+		$id = parent::insert($product);
 
-		if(isset($product['image']))
-			$dict['image'] = $product['image'];
-
-		$id = parent::insert($dict);
-
-		parent::raw("UPDATE ProductAmount SET amount = ? WHERE id_product = ?", [$product['amount'], $id]);
+		parent::raw("UPDATE ProductAmount SET amount = ? WHERE id_product = ?", [$amount, $id]);
 	}
 
 	public function remove($id){
@@ -22,14 +17,7 @@ class ProductController extends DBController {
 	}
 
 	public function edit($id, $product){
-		$dict = ['name' => $product['name'], 'category' => $product['category'], 'description' => $product['description'], 'price' => $product['price']];
-
-		if(isset($product['image']))
-			$dict['image'] = $product['image'];
-
-		parent::update($dict, "WHERE id = ?", [$id]);
-
-		parent::raw("UPDATE ProductAmount SET amount = ? WHERE id_product = ?", [$product['amount'], $id]);
+		parent::update($product, "WHERE id = ?", [$id]);
 	}
 
 	public function get($id){
@@ -48,7 +36,21 @@ class ProductController extends DBController {
 		return parent::rawSelect("SELECT COUNT(id) as count FROM Products as P INNER JOIN ProductAmount as PA ON (P.id = PA.id_product) WHERE amount <= 5")[0]['count'];
 	}
 
-	public function getProductsSize(){
+	public function getBalance(){
+		$entrada = parent::rawSelect("SELECT SUM(price * amount) as entrada FROM Movements WHERE type = 'Entrada'", [])[0]['entrada'];
+
+		return $saida == 0 ? 0 : abs($entrada - $saida);
+	}
+
+	public function getProfit(){
+		$entrada = parent::rawSelect("SELECT SUM(price * amount) as entrada FROM Movements WHERE type = 'Entrada'", [])[0]['entrada'];
+
+		$saida = parent::rawSelect("SELECT SUM(price * amount) as saida FROM Movements WHERE type = 'Saída'", [])[0]['saida'];
+
+		return $saida == 0 ? 0 :  $saida - $entrada;
+	}
+
+	public function getProductsCount(){
 		return parent::selectSingle("COUNT(id) as count")['count'];
 	}
 

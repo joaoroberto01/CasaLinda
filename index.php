@@ -30,8 +30,6 @@ Route::add('/produtos', function() {
 });
 
 Route::add('/produtos/criar', function() {
-	echo "Creating<br>";
-
 	if($_POST){
 		$productController = new ProductController();
 		$productController->create($_POST);
@@ -41,10 +39,14 @@ Route::add('/produtos/criar', function() {
 });
 
 Route::add('/produtos/detalhes/([0-9]+)', function($id) {
-
-	$productController = new ProductController();
-	echo json_encode($productController->get($id));
-});
+	$results = [];
+	if(isset($_COOKIE['user'])){
+		$productController = new ProductController();
+		$results = $productController->get($id);
+	}
+	
+	echo json_encode($results);
+}, false);
 
 Route::add('/produtos/atualizar/([0-9]+)', function($id) {
 	if($_POST){

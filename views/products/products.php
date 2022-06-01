@@ -29,13 +29,13 @@
                     </div>
                     <ul class="nav nav-pills flex-column align-items-start" id="menu">
                         <li class="nav-item">
-                            <h6>Quantidade</h6>
-                            <h2><?=$productController->getProductsSize()?></h2>
+                            <h6>Nº de Produtos</h6>
+                            <h2><?=$productController->getProductsCount()?></h2>
                         </li>
 
                         <li class="nav-item">
-                            <h6>Saldo</h6>
-                            <h2>R$3.243,00</h2>
+                            <h6>Saldo Líquido</h6>
+                            <h2><?="R\$".number_format($productController->getProfit(), 2, ",", ".")?></h2>
                         </li>
 
                         <li class="nav-item">
@@ -98,7 +98,6 @@
                                 <th>Nome</th>
                                 <th>Categoria</th>
                                 <th>Quantidade</th>
-                                <th>Preço Base</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -106,13 +105,11 @@
 
                             foreach($products as $product){
                                 $id = $product['id'];
-                                $price = number_format($product['price'], 2, ",", ".");
                                 echo "<tr>
-                                    <td>$id</th>
+                                    <td>$id</td>
                                     <td>${product['name']}</td>
                                     <td>${product['category']}</td>
                                     <td>${product['amount']}</td>
-                                    <td>R\$$price</td>
                                     <td><a class='details' onclick='productDetails($id)''><i data-feather='more-vertical'></i></a></td>
                                     </tr>";
                             }
@@ -125,7 +122,7 @@
     </div>
 
     <div class="modal fade" id="newProductModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <form method="POST" action="<?=ROOT_PATH?>produtos/criar">
                     <div class="modal-header">
@@ -143,7 +140,7 @@
                                 <div class="col-6 mb-3">
                                     <label for="category" class="form-label">Categoria</label>
                                     <select required id="category" class="form-control modal-input no-border default-border" placeholder="Selecione uma categoria" name="category">
-                                        <option value="" disabled selected hidden>Selecione uma categoria</option>
+                                        <option value="" disabled selected hidden>Selecionar Categoria</option>
                                         <option>Cozinha</option>
                                         <option>Banheiro</option>
                                         <option>Sala</option>
@@ -152,14 +149,6 @@
                                 <div class="col-12 mb-3">
                                     <label for="description" class="form-label">Descrição</label>
                                     <textarea required id="description" type="text" class="form-control modal-input default-border desc-textarea" name="description" placeholder="Descrição"></textarea>
-                                </div>
-                                <div class="col-6 mb-3">
-                                    <label for="amount" class="form-label">Quantidade</label>
-                                    <input required id="amount" type="number" class="form-control modal-input default-border" name="amount" placeholder="Quantidade">
-                                </div>
-                                <div class="col-6 mb-3">
-                                    <label for="price" class="form-label">Valor Base (R$)</label>
-                                    <input required id="price" type="number" class="form-control modal-input default-border" name="price" placeholder="Valor Base (R$)">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Adicionar Foto</label>
@@ -182,7 +171,7 @@
     </div>
 
     <div class="modal fade" id="productDetailsModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <form id="update-form" method="POST">
                     <div class="modal-header">
@@ -208,14 +197,6 @@
                                 <div class="col-12 mb-3">
                                     <label for="descriptionDetail" class="form-label">Descrição</label>
                                     <textarea required id="descriptionDetail" type="text" class="form-control modal-input default-border desc-textarea" name="description" placeholder="Descrição"></textarea>
-                                </div>
-                                <div class="col-6 mb-3">
-                                    <label for="amountDetail" class="form-label">Quantidade</label>
-                                    <input required id="amountDetail" type="number" class="form-control modal-input default-border" name="amount" placeholder="Quantidade">
-                                </div>
-                                <div class="col-6 mb-3">
-                                    <label for="priceDetail" class="form-label">Valor Base (R$)</label>
-                                    <input required id="priceDetail" type="number" class="form-control modal-input default-border" name="price" placeholder="Valor Base (R$)">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Adicionar Foto</label>
@@ -247,6 +228,8 @@
             $.get(<?= ROOT_PATH?> + "/produtos/detalhes/" + id, function(data, status){
                 console.log(data);
                 var product = JSON.parse(data);
+                if (product.length == 0)
+                    window.location = "logout";
 
                 $("#nameDetail").val(product.name);
                 $("#categoryDetail").val(product.category);

@@ -6,7 +6,7 @@ if ($_POST){
 	$user = $userController->auth($_POST['username'], $password);
 
     if($user){
-        setcookie('user', json_encode($user), time() + 3600);
+        setcookie('user', json_encode($user), time() + 24 * 3600);
 
         header("Location: " . ROOT_PATH);
     }
