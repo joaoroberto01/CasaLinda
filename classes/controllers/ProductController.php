@@ -36,20 +36,6 @@ class ProductController extends DBController {
 		return parent::rawSelect("SELECT * FROM Products as P INNER JOIN ProductAmount as PA ON (P.id = PA.id_product) WHERE amount <= ?", [RESTOCK_LIMIT]);
 	}
 
-	public function getBalance(){
-		$entrada = parent::rawSelect("SELECT SUM(price * amount) as entrada FROM Movements WHERE type = 'Entrada'", [])[0]['entrada'];
-
-		return $saida == 0 ? 0 : abs($entrada - $saida);
-	}
-
-	public function getProfit(){
-		$entrada = parent::rawSelect("SELECT SUM(price * amount) as entrada FROM Movements WHERE type = 'Entrada'", [])[0]['entrada'];
-
-		$saida = parent::rawSelect("SELECT SUM(price * amount) as saida FROM Movements WHERE type = 'Saída'", [])[0]['saida'];
-
-		return $saida == 0 ? 0 :  $saida - $entrada;
-	}
-
 	public function getProductsCount(){
 		return parent::selectSingle("COUNT(id) as count")['count'];
 	}

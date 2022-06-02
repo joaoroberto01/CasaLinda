@@ -97,8 +97,10 @@ Route::add('/db', function() {
 
 }, false);
 
-Route::add('/pdf', function(){
-	generatePDF();
+Route::add('/relatorios/pdf/(.+)', function($data){
+	$data = json_decode(base64_decode($data), true);
+
+	generatePDF($data);
 }, false);
 
 Route::add('/logout', function() {

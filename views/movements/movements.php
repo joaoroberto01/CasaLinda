@@ -73,17 +73,16 @@
                                 $price = $movement['price'];
                                 $amount = $movement['amount'];
 
-                                $date = date_create($date);
-                                $date = date_format($date,"d/m/Y H:i:s");
-                                $total = number_format($price * $amount, 2, ",", ".");
-                                $price = number_format($price, 2, ",", ".");
+                                $date = formatDate($date); 
+                                $total = formatCurrency($price * $amount);
+                                $price = formatCurrency($price);
                                 
                                 echo "<tr>
                                     <td>$id</th>
                                     <td>${movement['name']}</td>
                                     <td>$date</td>
                                     <td>$amount</td>
-                                    <td>R\$$price</td>
+                                    <td>$price</td>
                                     <td>R\$$total</td>
                                     <td>${movement['type']}</td>
                                     </tr>";

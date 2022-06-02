@@ -2,54 +2,77 @@
 
 require_once CLASSES_PATH . "fpdf/fpdf.php";
 
-
-
-function generatePDF(){	
+function generatePDF($reportData){
 	$pdf = new FPDF();
 
-	$header = ['Data', 'Nome', 'Valor Unit.', 'Qtd', 'Valor Total'];
-
-	$data = [['31/05/2022', 'Batata Frita', 'R$50,00', '599', 'R$29.950,00'], ['31/05/2022', 'Batata Assada', 'R$30,00', '299', 'R$8.970,00']];
 	$pdf->SetFont('Arial','',14);
 	$pdf->AddPage();
 	
-	reportTable($pdf, $header, $data);
+	reportTable($pdf, $reportData);
 
-	echo $pdf->Output('I');
+	$date = formatDate($reportData['finalDate'], "d/m/Y");
+
+	$name = utf8_decode("Relatório_${reportData['type']}s_$date.pdf");
+
+	//echo $pdf->Output('I', $name);
+	$pdf->Output('D', $name);
 }
 
-function reportTable($pdf, $header, $data = []){
+function reportTable($pdf, $reportData){
+	$type = $reportData['type'];
+
+	$movementsController = new MovementsController();
+	$movements = $movementsController->getReport($type, $reportData['startDate'], $reportData['finalDate']);
+	
+	$startDateF = formatDate($reportData['startDate'], "d/m/Y");
+	$finalDateF = formatDate($reportData['finalDate'], "d/m/Y");
+
 	$pdf->Cell(60);
 
 	$pdf->Image("res/img/logo.png",10,6,20);
 
 	$pdf->SetFont('Arial','B',14);
-	$pdf->Cell(70,10, utf8_decode('Relatório de Entradas'), 'LRT', 0,'C');
+	$pdf->Cell(70,10, utf8_decode("Relatório de ${type}s"), 'LRT', 0,'C');
 	$pdf->Ln(10);
 
 	$pdf->Cell(60);
 	$pdf->SetFont('Arial','',14);
-	$pdf->Cell(70,10, utf8_decode("30/05/2022 - 01/06/2022"), 1, 1,'C');
+	$pdf->Cell(70,10, "$startDateF - $finalDateF", 1, 1,'C');
 
 	$pdf->Ln(20);
 
+	$header = ['Data e Hora', 'Nome', 'Qtd', 'Preço', 'Valor Total'];
 
-	$w = array(30, 70, 30, 20, 40);
+	$w = array(40, 60, 20, 30, 40);
 
 	$pdf->SetFont('Arial','B',14);
 	for($i = 0; $i < count($header);$i++)
-		$pdf->Cell($w[$i],7,$header[$i],1,0,'C');
+		$pdf->Cell($w[$i],7,utf8_decode($header[$i]),1,0,'C');
 
 	$pdf->Ln();
 
 	$pdf->SetFont('Arial','',14);
 
-	foreach($data as $row) {
-		$pdf->Cell($w[0],6,$row[0],'L', 0, 'C');
-		$pdf->Cell($w[1],6,$row[1], 'LR', 0, 'C');
-		$pdf->Cell($w[2],6,$row[2], 'LR', 0,'C');
-		$pdf->Cell($w[3],6,$row[3], 'LR', 0,'C');
-		$pdf->Cell($w[4],6,$row[4], 'R', 0,'C');
+	$sum = 0;
+	foreach($movements as $movement){
+		$date = $movement['date'];
+		$price = $movement['price'];
+		$amount = $movement['amount'];
+
+		$date = substr(formatDate($date), 0, 16);
+
+		$total = $price * $amount;
+		$sum += $total;
+		$total = formatCurrency($total);
+		$price = formatCurrency($price);
+
+		$pdf->SetFont('Arial','',12);
+		$pdf->Cell($w[0], 6, $date,'L', 0, 'C');
+		$pdf->Cell($w[1], 6, $movement['name'], 'LR', 0, 'C');
+		$pdf->SetFont('Arial','',14);
+		$pdf->Cell($w[2], 6, $amount, 'LR', 0,'C');
+		$pdf->Cell($w[3], 6, $price, 'LR', 0,'C');
+		$pdf->Cell($w[4], 6, $total, 'R', 0,'C');
 		$pdf->Ln();
 	}
 
@@ -57,13 +80,23 @@ function reportTable($pdf, $header, $data = []){
 
 	$pdf->Ln(5);
 
+	$sum = formatCurrency($sum);
+
 	$pdf->SetFont('Arial','',14);
-	$pdf->Cell(47.5, 10, utf8_decode('Valor de Entrada:'), 'LTB', 0,'C');
+	$pdf->Cell(47.5, 10, utf8_decode("Valor de $type:"), 'LTB', 0,'C');
 	$pdf->SetFont('Arial','B',14);
-	$pdf->Cell(47.5, 10, 'R$999.920,00', 'RTB', 0);
+	$pdf->Cell(47.5, 10, $sum, 'RTB', 0);
 	$pdf->SetFont('Arial','',14);
-	$pdf->Cell(47.5, 10, utf8_decode('Valor Líquido: '), 'TB', 0,'C');
-	$pdf->SetFont('Arial','B',14);
-	$pdf->Cell(47.5, 10, 'R$999.920,00', 'RTB', 0);
+	if($type == "Saída"){
+		$pdf->Cell(47.5, 10, utf8_decode('Valor Líquido: '), 'TB', 0,'C');
+		$pdf->SetFont('Arial','B',14);
+
+		$profit = $movementsController->getProfit($reportData['startDate'], $reportData['finalDate']);
+
+		$profit = formatCurrency($profit);
+
+
+		$pdf->Cell(47.5, 10, $profit, 'RTB', 0);
+	}
 }
 ?>

@@ -1,5 +1,6 @@
 <?php
     $productController = new ProductController();
+    $movementsController = new MovementsController();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,7 +36,7 @@
 
                         <li class="nav-item">
                             <h6>Saldo Líquido</h6>
-                            <h2><?="R\$".number_format($productController->getProfit(), 2, ",", ".")?></h2>
+                            <h2><?=formatCurrency($movementsController->getProfit())?></h2>
                         </li>
 
                         <?php
