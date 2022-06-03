@@ -12,6 +12,13 @@ function getGreeting(){
 	return "Bom dia";
 }
 
+function getCategories(){
+	$categories = ["Cozinha", "Banheiro", "Sala", "Outros"];
+	sort($categories);
+
+	return $categories;
+}
+
 function goToRoute($route = ""){
 	header("Location: " . ROOT_PATH . $route);
 }
@@ -23,5 +30,24 @@ function formatDate($date, $format = "d/m/Y H:i:s"){
 
 function formatCurrency($value){
 	return 'R$' . number_format($value, 2, ",", ".");
+}
+
+function deleteDirectory($dir) {
+    if (!file_exists($dir))
+        return true;
+
+    if (!is_dir($dir))
+        return unlink($dir);
+
+    foreach (scandir($dir) as $item) {
+        if ($item == '.' || $item == '..')
+            continue;
+
+        if (!deleteDirectory($dir . DIRECTORY_SEPARATOR . $item))
+            return false;
+
+    }
+
+    return rmdir($dir);
 }
 ?>

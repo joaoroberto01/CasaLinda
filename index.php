@@ -30,6 +30,21 @@ Route::add('/produtos', function() {
 });
 
 Route::add('/produtos/criar', function() {
+	if ($_FILES AND $_FILES['image']['size'] > 0) {
+		$extension = explode(".", $_FILES['image']['name'])[1];
+
+		$filename = strtolower(utf8_decode(trim($_POST['name'])));
+		$filename = str_replace(" ", "_", $filename);
+
+		if(!file_exists(PRODUCT_IMAGES_PATH . $filename))
+			mkdir(PRODUCT_IMAGES_PATH . $filename);
+
+		$filename .= "/" . date("Ymd_Hi") . ".$extension";
+
+		if(move_uploaded_file($_FILES['image']['tmp_name'], PRODUCT_IMAGES_PATH . $filename))
+			$_POST['image'] = $filename;
+	}
+	
 	if($_POST){
 		$productController = new ProductController();
 		$productController->create($_POST);
@@ -49,8 +64,28 @@ Route::add('/produtos/detalhes/([0-9]+)', function($id) {
 }, false);
 
 Route::add('/produtos/atualizar/([0-9]+)', function($id) {
+	if ($_FILES) {
+		$extension = explode(".", $_FILES['image']['name'])[1];
+
+		$filename = strtolower(utf8_decode(trim($_POST['name'])));
+		$filename = str_replace(" ", "_", $filename);
+
+		if(!file_exists(PRODUCT_IMAGES_PATH . $filename))
+			mkdir(PRODUCT_IMAGES_PATH . $filename);
+
+		$filename .= "/" . date("Ymd_Hi") . ".$extension";
+
+		if(move_uploaded_file($_FILES['image']['tmp_name'], PRODUCT_IMAGES_PATH . $filename))
+			$_POST['image'] = $filename;
+	}
+
 	if($_POST){
 		$productController = new ProductController();
+		if(isset($_POST['image'])){
+			$oldImg = $productController->get($id)['image'];
+			unlink(PRODUCT_IMAGES_PATH . $oldImg);
+		}
+
 		$productController->edit($id, $_POST);
 	}
 
@@ -59,6 +94,12 @@ Route::add('/produtos/atualizar/([0-9]+)', function($id) {
 
 Route::add('/produtos/remover/([0-9]+)', function($id) {
 	$productController = new ProductController();
+
+	$dir = $productController->get($id)["image"];
+	$dir = explode("/", $dir)[0];
+
+	deleteDirectory(PRODUCT_IMAGES_PATH . $dir);
+
 	$productController->remove($id);
 
 	goToRoute("produtos");
@@ -89,13 +130,6 @@ Route::add('/movimentos/criar',function() {
 Route::add('/historico',function() {
 	View::render('history/history');
 });
-
-Route::add('/db', function() {
-	$movementsController = new MovementsController();
-	$movementsController->create(['amount' => 5,'price'=> 50 , 'id_product' => 6, 'type' => "Entrada"]);
-
-
-}, false);
 
 Route::add('/relatorios/pdf/(.+)', function($data){
 	$data = json_decode(base64_decode($data), true);

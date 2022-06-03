@@ -149,11 +149,18 @@ $movementsController = new MovementsController();
                     <hr>
                     <h5>Total: R$<?= number_format($sum, 2, ",", ".");?></h5>
                 </div>
+
+                <?php View::render('timer') ?>
             </div>
         </div>
     </div>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="<?= BS_JS_PATH ?>"></script>
-    <script>feather.replace();</script>
+    <script>
+        feather.replace();
+        const INACTIVITY_TIME = <?= INACTIVITY_TIME?>;
+        const ROOT_PATH = '<?= ROOT_PATH?>';
+    </script>
+    <script src="<?= JS_PATH ?>/timer.js"></script>
 </body>

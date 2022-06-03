@@ -7,9 +7,9 @@ class ProductController extends DBController {
 	}
 
 	public function create($product){
-		$id = parent::insert($product);
+		$product['category'] = implode(", ", $product['category']);
 
-		parent::raw("UPDATE ProductAmount SET amount = ? WHERE id_product = ?", [$amount, $id]);
+		$id = parent::insert($product);
 	}
 
 	public function remove($id){
@@ -17,6 +17,8 @@ class ProductController extends DBController {
 	}
 
 	public function edit($id, $product){
+		$product['category'] = implode(", ", $product['category']);
+
 		parent::update($product, "WHERE id = ?", [$id]);
 	}
 

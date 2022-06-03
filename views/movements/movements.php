@@ -92,6 +92,7 @@
                     </table>
                 </div>
             </div>
+            <?php View::render("timer") ?>
         </div>
     </div>
 
@@ -148,7 +149,12 @@
     <script src="<?= BS_JS_PATH ?>"></script>
     <script src="<?= JS_PATH ?>/jquery.maskMoney.min.js"></script>
 
-    <script>feather.replace();</script>
+    <script>
+        feather.replace();
+        const INACTIVITY_TIME = <?= INACTIVITY_TIME?>;
+        const ROOT_PATH = '<?= ROOT_PATH?>';
+    </script>
+    <script src="<?= JS_PATH ?>/timer.js"></script>
 
     <script type="text/javascript">
         function openModal(type){

@@ -58,6 +58,7 @@ function reportTable($pdf, $reportData){
 		$date = $movement['date'];
 		$price = $movement['price'];
 		$amount = $movement['amount'];
+		$name = utf8_decode($movement['name']);
 
 		$date = substr(formatDate($date), 0, 16);
 
@@ -68,7 +69,7 @@ function reportTable($pdf, $reportData){
 
 		$pdf->SetFont('Arial','',12);
 		$pdf->Cell($w[0], 6, $date,'L', 0, 'C');
-		$pdf->Cell($w[1], 6, $movement['name'], 'LR', 0, 'C');
+		$pdf->Cell($w[1], 6, $name, 'LR', 0, 'C');
 		$pdf->SetFont('Arial','',14);
 		$pdf->Cell($w[2], 6, $amount, 'LR', 0,'C');
 		$pdf->Cell($w[3], 6, $price, 'LR', 0,'C');

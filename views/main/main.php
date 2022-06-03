@@ -25,7 +25,7 @@ require_once "utils/utils.php";
 
 				<?=getGreeting() . ", ${user['name']}!" ?>
 				<div class="d-inline-flex align-items-center" style="justify-content: space-between">
-					<span id="timer" class="mr-2"><?=printf("%d:%d", INACTIVITY_TIME / 60, INACTIVITY_TIME % 60)?></span>
+					<span id="timer" class="mr-2">10:00</span>
 					<a class="btn btn-logout ml-4" href="logout"><i data-feather="log-out"></i> Sair</a>
 				</div>
 			</div>
@@ -80,62 +80,13 @@ require_once "utils/utils.php";
 	</footer>
 	
 	
-	<script src="<?=BS_JS_PATH?>"></script>
-	<script type="text/javascript">
-		const INACTIVITY_TIME = <?= INACTIVITY_TIME?>;	
-		const START_TIME = 5;
-		var time;
-		var startTime;
-
-		function resetTimer(){
-			if (startTime == START_TIME)
-				return;
-
-			time = INACTIVITY_TIME;
-			startTime = START_TIME;
-			timer.style.opacity = '0';
-		}
-
-		var activityEvents = ['mousedown', 'mousemove', 'keydown', 'scroll', 'touchstart'];
-
-		activityEvents.forEach(function(eventName) {
-			document.addEventListener(eventName, resetTimer, true);
-		});
-
-		resetTimer();
-
-		setInterval(function(){
-			var timer = document.getElementById("timer");
-
-			if(startTime <= 0){
-				var m = Math.floor(time / 60);
-				var s = time % 60;
-
-
-				if (m < 10) m = "0" + m;
-				if (s < 10) s = "0" + s;
-
-				timer.innerHTML = `${m}:${s}`;
-				timer.style.opacity = '1';
-
-				time--;
-				if(time == -1){
-					window.location = "logout";
-				}
-			}else{
-				startTime--;
-				timer.style.opacity = '0';
-			}
-		}, 1000);
-
-		function goTo(link){
-			window.location = link;
-		}
-	</script>
-
 	<script>
 		feather.replace()
+		const INACTIVITY_TIME = <?= INACTIVITY_TIME?>;	
 	</script>
+
+	<script src="<?= BS_JS_PATH ?>"></script>
+	<script src="<?= JS_PATH ?>/timer.js"></script>
 
 </body>
 </html>
