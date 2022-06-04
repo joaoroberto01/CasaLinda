@@ -28,7 +28,7 @@
                 </div>
             </div>
 
-            <div class="offset-lg-1 col-lg-9">
+            <div class="offset-lg-1 col-lg-9" style="height: 80%">
                 <nav class="navbar p-4">
                     <div class="d-inline-flex justify-content-center align-items-center">
                         <h1 class="navbar-brand">Movimentação</h1><br>
@@ -50,7 +50,7 @@
                         $hide = "d-none";
                     }
                 ?>
-
+                
                 <div class="table-responsive <?=$hide?> mx-4 card" style="border: 0;">
                     <table class="table table-borderless">
                         <thead>
@@ -180,7 +180,7 @@
                 if(amount <= product.amount)
                     document.getElementById('form').submit(); 
                 else
-                    alert("Para de roubar, mlk");
+                    alert("Tentativa de saída maior que estoque!");
             });
 
 

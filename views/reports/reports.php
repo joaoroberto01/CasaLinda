@@ -110,7 +110,7 @@ $movementsController = new MovementsController();
                     ?>
 
                     <div class="table-responsive <?=$hide?>">
-                        <table class="table table-css table-borderless">
+                        <table class="table table-borderless">
                             <thead>
                                 <tr>
                                     <th>Data e Hora</th>

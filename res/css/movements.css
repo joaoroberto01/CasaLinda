@@ -128,3 +128,13 @@ a.details {
     background-color: #34C759 !important;
     color: white !important;
 }
+
+thead {
+    position: sticky;
+    top: 0;
+    background-color: white;
+}
+
+.card {
+    max-height: 100% !important;
+}

@@ -65,7 +65,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-9">
+            <div class="col-lg-9" style="height: 80%">
                 <nav class="navbar p-4">
                     <div class="d-flex justify-content-center align-items-center">
                         <h1 class="navbar-brand">Produtos</h1>
@@ -115,7 +115,7 @@
                     }
                 ?>
 
-                <div class="table-responsive <?=$hide?> mx-4 py-2 pl-3  card" style="border: 0;">
+                <div class="table-responsive <?=$hide?> mx-4 pl-3 card" style="border: 0;">
                     <table class="table table-borderless">
                         <thead>
                             <tr>
@@ -126,6 +126,7 @@
                                 <th>Quantidade</th>
                                 <th>Entrada</th>
                                 <th>Saída</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -251,7 +252,7 @@
                                         <?php
 
                                             foreach($categories as $category)
-                                                echo "<option>$category</option>";
+                                                echo "<option class='detailOption'>$category</option>";
                                         ?>
                                     </select>
                                 </div>

@@ -58,6 +58,7 @@ input.search {
 
 a.details {
     cursor: pointer;
+    color: var(--dark-orange);
 }
 
 .modal-input{
@@ -91,4 +92,14 @@ a.details {
 
 .warning {
     fill: yellow;
+}
+
+thead {
+    position: sticky;
+    top: 0;
+    background-color: white;
+}
+
+.card {
+    max-height: 100% !important;
 }
