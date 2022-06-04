@@ -36,7 +36,7 @@ input.search {
 
 .btn-dark {
     background-color: var(--dark-orange);
-    color: var(--card-background); !important;
+    color: var(--card-background) !important;
 }
 
 .btn-dark:hover {
@@ -44,7 +44,6 @@ input.search {
 }
 
 .btn-search {
-    margin-right: 5%;
     border-radius: 0 12px 12px 0 !important;
 }
 
@@ -53,31 +52,8 @@ input.search {
     color: var(--card-background) !important;
 }
 
-.drpdwn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    height: 45px !important;
-    border-radius: 12px !important;
-    margin-right: 30px !important;
-
-    color: var(--card-background);
-    background-color: var(--dark-orange);
-}
-
-.drpdwn:hover {
-    color: var(--card-background); !important;
-}
-
 .sidebar {
     background-color: var(--card-selected);
-}
-
-@media (min-width: 992px) {
-    .sidebar {
-        max-width: 350px;
-    }
 }
 
 a.details {

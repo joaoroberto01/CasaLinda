@@ -10,17 +10,17 @@ class MovementsController extends DBController{
 		parent::insert($movement);
 	}
 
-	public function getAll($predicate = "", $params = []){
+	public function getAll($predicate = "", $params = [], $orderBy = "ORDER BY amount DESC"){
 		$fields = "M.id as id, name, date, amount, price, type";
 
-		return parent::rawSelect("SELECT $fields FROM Movements AS M INNER JOIN Products AS P ON (M.id_product = P.id) $predicate", $params);
+		return parent::rawSelect("SELECT $fields FROM Movements AS M INNER JOIN Products AS P ON (M.id_product = P.id) $predicate $orderBy", $params);
 	}
 
 	public function getReport($type, $startDate, $endDate){
 		$startDate .= " 00:00";
 		$endDate .= " 23:59";
 
-		return $this->getAll("WHERE type = ? AND date BETWEEN ? AND ? ORDER BY amount DESC", [$type, 
+		return $this->getAll("WHERE type = ? AND date BETWEEN ? AND ?", [$type, 
 			$startDate, $endDate]);
 	}
 

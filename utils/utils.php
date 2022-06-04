@@ -13,23 +13,15 @@ function getGreeting(){
 }
 
 function getCategories(){
-	$categories = ["Cozinha", "Banheiro", "Sala", "Outros"];
+	$categories = ["Cozinha", "Banheiro", "Sala"];
 	sort($categories);
+	array_push($categories, "Outros");
 
 	return $categories;
 }
 
 function goToRoute($route = ""){
 	header("Location: " . ROOT_PATH . $route);
-}
-
-function formatDate($date, $format = "d/m/Y H:i:s"){
-	$date = date_create($date);
-	return date_format($date, $format);
-}
-
-function formatCurrency($value){
-	return 'R$' . number_format($value, 2, ",", ".");
 }
 
 function deleteDirectory($dir) {

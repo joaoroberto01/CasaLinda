@@ -115,8 +115,8 @@
                     }
                 ?>
 
-                <div class="table-responsive <?=$hide?>">
-                    <table class="table table-css table-borderless">
+                <div class="table-responsive <?=$hide?> mx-4 py-2 pl-3  card" style="border: 0;">
+                    <table class="table table-borderless">
                         <thead>
                             <tr>
                                 <th></th>
@@ -124,6 +124,8 @@
                                 <th>Nome</th>
                                 <th>Categoria</th>
                                 <th>Quantidade</th>
+                                <th>Entrada</th>
+                                <th>Saída</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -132,6 +134,9 @@
                             foreach($products as $product){
                                 $id = $product['id'];
                                 $amount = $product['amount'];
+
+                                $price_in = formatCurrency($product['price_in']);
+                                $price_out = formatCurrency($product['price_out']);
                                 echo "<tr>";
                                 if($amount <= RESTOCK_LIMIT)
                                     echo "<td class='p-1 text-center td-icon'>
@@ -144,6 +149,8 @@
                                     <td>${product['name']}</td>
                                     <td>${product['category']}</td>
                                     <td>$amount</td>
+                                    <td>$price_in</td>
+                                    <td>$price_out</td>
                                     <td><a class='details' onclick='productDetails($id)'><i data-feather='more-vertical'></i></a></td>
                                     </tr>";
                             }
@@ -159,10 +166,10 @@
     <div class="modal fade" id="newProductModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form method="POST" action="<?=ROOT_PATH?>produtos/criar" enctype="multipart/form-data">
+                <form id="newProductModal-form" method="POST" action="<?=ROOT_PATH?>produtos/criar" enctype="multipart/form-data">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Novo Produto</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close" onclick="closeModal('newProductModal')" data-dismiss="modal" bs-dismiss="modal" aria-label="Close"></button>
                     </div>
 
                     <div class="modal-body">
@@ -185,15 +192,33 @@
                                     <label for="description" class="form-label">Descrição</label>
                                     <textarea required id="description" type="text" class="form-control modal-input default-border desc-textarea" name="description" placeholder="Descrição"></textarea>
                                 </div>
-                                <div class="mb-3">
+
+                                <div class="col-6 mb-3">
+                                    <label for="in" class="form-label">Valor entrada</label>
+                                    <input required id="in" type="text" class="form-control input-price modal-input default-border" name="entrada" placeholder="Valor entrada">
+                                </div>
+
+                                <div class="col-6 mb-3">
+                                    <label for="out" class="form-label">Valor saída</label>
+                                    <input required id="out" type="text" class="form-control input-price modal-input default-border" name="saida" placeholder="Valor saída">
+                                </div>
+
+                                <div class="col-6 mb-3">
+                                    <label for="quantity" class="form-label">Quantidade</label>
+                                    <input required id="quantity" type="number" class="form-control modal-input default-border" name="quantity" placeholder="Quantidade">
+                                </div>
+
+                                <div class="col-6 mb-3">
                                     <label class="form-label">Adicionar Foto</label>
                                     <br>
                                     <label for="image" class="btn btn-success upload-btn"><i data-feather="camera"></i> Escolher</label>
 
                                     <input id="image" type="file" name="image" accept="image/*" onchange="generatePreview(this)" hidden>
                                 </div>
-                                <img class="img-responsive img preview">
-                                
+
+                                <div class="col-12">
+                                    <img id="newProductModal-preview" class="img-responsive img preview">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -234,14 +259,30 @@
                                     <label for="descriptionDetail" class="form-label">Descrição</label>
                                     <textarea required id="descriptionDetail" type="text" class="form-control modal-input default-border desc-textarea" name="description" placeholder="Descrição"></textarea>
                                 </div>
-                                <div class="mb-3">
+
+                                <!--  -->
+                                <div class="col-6 mb-3">
+                                    <label for="inDetail" class="form-label">Valor entrada</label>
+                                    <input required id="inDetail" type="text" class="form-control input-price modal-input default-border" name="entrada" placeholder="Valor entrada">
+                                </div>
+
+                                <div class="col-6 mb-3">
+                                    <label for="outDetail" class="form-label">Valor saída</label>
+                                    <input required id="outDetail" type="text" class="form-control input-price modal-input default-border" name="saida" placeholder="Valor saída">
+                                </div>
+
+                                <div class="col-12 mb-3">
                                     <label class="form-label">Adicionar Foto</label>
                                     <br>
                                     <label for="imageDetail" class="btn btn-success upload-btn"><i data-feather="camera"></i> Escolher</label>
 
                                     <input id="imageDetail" type="file" name="image" accept="image/*" onchange="generatePreview(this, 1)" hidden>
                                 </div>
-                                <img id="update-preview" class="img-responsive img preview">
+
+                                
+                                <div class="col-12">
+                                    <img id="productDetailsModal-preview" class="img-responsive img preview">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -259,6 +300,8 @@
     <script src="<?= BS_BUNDLE_JS_PATH ?>"></script>
     <script src="<?= BS_MULTISELECT_JS_PATH ?>"></script>
 
+    <script src="<?= JS_PATH ?>/jquery.maskMoney.min.js"></script>
+
     <script>
         feather.replace();
         const INACTIVITY_TIME = <?= INACTIVITY_TIME?>;  
@@ -269,7 +312,8 @@
 
         $(document).ready(function() {
             $("select[multiple='multiple']").bsMultiSelect();
-        });
+            $('.input-price').maskMoney({prefix:'R$ ', thousands:'.', decimal:','});
+        });        
     </script>
     <script src="<?= JS_PATH ?>/timer.js"></script>
 
@@ -283,8 +327,8 @@
 
                 $("#nameDetail").val(product.name);
                 $("#descriptionDetail").val(product.description);
-                $("#amountDetail").val(product.amount);
-                $("#priceDetail").val(product.price);
+                $("#inDetail").val(product.price_in);
+                $("#outDetail").val(product.price_out);
 
                 var options = document.getElementsByClassName('detailOption');
                 var categories = product.category.split(", ");
@@ -297,7 +341,7 @@
                 $('select').bsMultiSelect("UpdateOptionsSelected");
 
                 if(product.image)
-                    document.getElementById("update-preview").src = '<?= (ROOT_PATH . PRODUCT_IMAGES_PATH) ?>' + product.image;
+                    document.getElementById("productDetailsModal-preview").src = '<?= (ROOT_PATH . PRODUCT_IMAGES_PATH) ?>' + product.image;
                 
 
                 document.getElementById("remove-btn").onclick = function(){
@@ -309,7 +353,12 @@
 
                 $("#productDetailsModal").modal('toggle');
             });
+        }
 
+        function closeModal(id){
+            $(`#${id}-form`)[0].reset();
+            document.getElementById(`${id}-preview`).src = '';
+            $(`#${id}`).modal('hide');
         }
 
         function generatePreview(fileInput, which = 0) {

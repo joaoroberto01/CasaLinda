@@ -115,10 +115,8 @@ Route::add('/movimentos',function() {
 
 Route::add('/movimentos/criar',function() {
 	if($_POST){
-		$_POST['price'] = str_replace(".", "", $_POST['price']);
-		$_POST['price'] = str_replace(",", ".", $_POST['price']);
-		$_POST['price'] = str_replace(" ", "", $_POST['price']);
-		$_POST['price'] = str_replace('R$', "", $_POST['price']);
+		$_POST['price'] = clearCurrency($_POST['price']);
+		
 
 		$movementsController = new MovementsController();
 		$movementsController->create($_POST);

@@ -37,6 +37,9 @@ $movementsController = new MovementsController();
                         $startDate = isset($_POST['startDate']) ? $_POST['startDate'] : $movementsController->getFirstMovementDate();
                         $finalDate = isset($_POST['finalDate']) ? $_POST['finalDate'] : date('Y-m-d');
 
+                        $startDateInput = formatDate(substr($startDate, 0, 10), "Y-d-m");
+                        $finalDateInput = formatDate($finalDate, "Y-d-m");
+
                         $startDateF = formatDate($startDate, "d/m/Y");
                         $finalDateF = formatDate($finalDate, "d/m/Y");
 
@@ -48,12 +51,12 @@ $movementsController = new MovementsController();
                         <ul class="nav flex-column align-items-center mb-5" id="menu">
                             <li class="nav-item">
                                 <h6>Data Inicial</h6>
-                                <input class="form-control date" type="date" name="startDate" value="<?= substr($startDate, 0, 10) ?>">
+                                <input class="form-control date" type="date" name="startDate" value="<?= $startDateInput?>">
                             </li>
 
                             <li class="nav-item mb-1">
                                 <h6>Data Final</h6>
-                                <input class="form-control date" type="date" name="finalDate" value="<?= $finalDate?>">
+                                <input class="form-control date" type="date" name="finalDate" value="<?= $finalDateInput?>">
                             </li>
 
 
@@ -137,8 +140,8 @@ $movementsController = new MovementsController();
                                     <td>$date</td>
                                     <td>${movement['name']}</td>
                                     <td>$amount</td>
-                                    <td>R\$$price</td>
-                                    <td>R\$$total</td>
+                                    <td>$price</td>
+                                    <td>$total</td>
                                     <td>${movement['type']}</td>
                                     </tr>";
                                 }

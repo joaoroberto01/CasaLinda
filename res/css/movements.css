@@ -36,7 +36,7 @@ input.search {
 
 .btn-dark {
     background-color: var(--dark-orange);
-    color: var(--card-background); !important;
+    color: var(--card-background) !important;
 }
 
 .btn-dark:hover {
@@ -51,23 +51,6 @@ input.search {
 .dark-hover:hover {
     background-color: var(--dark-orange-hover);
     color: var(--card-background) !important;
-}
-
-.drpdwn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    height: 45px !important;
-    border-radius: 12px !important;
-    margin-right: 30px !important;
-
-    color: var(--card-background);
-    background-color: var(--dark-orange);
-}
-
-.drpdwn:hover {
-    color: var(--card-background); !important;
 }
 
 .sidebar {
@@ -115,6 +98,15 @@ a.details {
 
 .warning {
     fill: yellow;
+}
+
+.tablerow-E {
+    background-color: #DEF3E2;
+}
+
+.tablerow-S {
+    /* background-color: #FAA0A0; */
+    background-color:  #f8dede;
 }
 
 .red {

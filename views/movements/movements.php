@@ -28,7 +28,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-9">
+            <div class="offset-lg-1 col-lg-9">
                 <nav class="navbar p-4">
                     <div class="d-inline-flex justify-content-center align-items-center">
                         <h1 class="navbar-brand">Movimentação</h1><br>
@@ -51,8 +51,8 @@
                     }
                 ?>
 
-                <div class="table-responsive <?=$hide?>">
-                    <table class="table table-css table-borderless">
+                <div class="table-responsive <?=$hide?> mx-4 card" style="border: 0;">
+                    <table class="table table-borderless">
                         <thead>
                             <tr>
                                 <th>Código Mov.</th>
@@ -76,15 +76,17 @@
                                 $date = formatDate($date); 
                                 $total = formatCurrency($price * $amount);
                                 $price = formatCurrency($price);
+
+                                $type = $movement['type'];
                                 
-                                echo "<tr>
+                                echo "<tr class='tablerow-${type[0]}'>
                                     <td>$id</th>
                                     <td>${movement['name']}</td>
                                     <td>$date</td>
                                     <td>$amount</td>
                                     <td>$price</td>
-                                    <td>R\$$total</td>
-                                    <td>${movement['type']}</td>
+                                    <td>$total</td>
+                                    <td>$type</td>
                                     </tr>";
                             }
                             ?>
