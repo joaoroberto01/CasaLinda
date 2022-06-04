@@ -1,4 +1,4 @@
-const START_TIME = 5;
+const START_TIME = 10;
 var time;
 var startTime;
 

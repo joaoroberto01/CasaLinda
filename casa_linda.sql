@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 03/06/2022 às 22:09
+-- Tempo de geração: 04/06/2022 às 20:27
 -- Versão do servidor: 10.4.21-MariaDB
 -- Versão do PHP: 7.4.28
 
@@ -38,16 +38,7 @@ CREATE TABLE IF NOT EXISTS `Movements` (
   `type` enum('Entrada','Saída') NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_movement_id_product` (`id_product`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-
---
--- Despejando dados para a tabela `Movements`
---
-
-INSERT INTO `Movements` (`id`, `date`, `amount`, `price`, `id_product`, `type`) VALUES
-(1, '2022-06-02 13:24:23', 5, 2, 8, 'Entrada'),
-(2, '2022-06-02 13:24:50', 2, 4, 8, 'Saída'),
-(3, '2022-06-02 17:01:42', 500, 50, 10, 'Saída');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Gatilhos `Movements`
@@ -73,17 +64,6 @@ CREATE TABLE IF NOT EXISTS `ProductAmount` (
   KEY `fk_id_product` (`id_product`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Despejando dados para a tabela `ProductAmount`
---
-
-INSERT INTO `ProductAmount` (`id_product`, `amount`) VALUES
-(4, 0),
-(6, 0),
-(8, 3),
-(10, -500),
-(20, 0);
-
 -- --------------------------------------------------------
 
 --
@@ -95,20 +75,11 @@ CREATE TABLE IF NOT EXISTS `Products` (
   `name` varchar(30) NOT NULL,
   `description` varchar(100) NOT NULL,
   `category` tinytext NOT NULL,
+  `price_in` float NOT NULL,
+  `price_out` float NOT NULL,
   `image` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
-
---
--- Despejando dados para a tabela `Products`
---
-
-INSERT INTO `Products` (`id`, `name`, `description`, `category`, `image`) VALUES
-(4, 'Pipoquinha', 'Pipipipipipopopopoca', 'Banheiro', NULL),
-(6, 'Bicicleta', 'Bicicleta Description', 'Sala', ''),
-(8, 'Copo de Plástico', 'Copo de Plástico 400ml Branco', 'Cozinha', ''),
-(10, 'Teste', 'desc', 'Cozinha', '05e37255176861d2b43ab919e3966216.jpg'),
-(20, 'mcat', 'teste', 'Cozinha, Banheiro', NULL);
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
 --
 -- Gatilhos `Products`

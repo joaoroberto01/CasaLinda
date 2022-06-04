@@ -37,33 +37,15 @@ $movementsController = new MovementsController();
                         
                         $finalDate = isset($_POST['finalDate']) ? $_POST['finalDate'] : date('Y-m-d');
 
-                        print_r($_POST);
-
-                        if(isset($_POST['startDate'])){
+                        if(isset($_POST['startDate']))
                             $startDate = $_POST['startDate'];
-                            $startDate = formatDate($startDate, "Y-m-d", "Y-d-m");
-                        }else{
+                        else{
                             $startDate = $movementsController->getFirstMovementDate();
                             $startDate = substr($startDate, 0, 10);
                         }
 
-                        if(isset($_POST['finalDate'])){
-                            $finalDate = $_POST['finalDate'];
-                            $finalDate = formatDate($finalDate, "Y-m-d", "Y-d-m");
-                        }else
-                            $finalDate = date("Y-m-d");
-
-                        $startDateInput = formatDate($startDate, "Y-d-m");
-                        $finalDateInput = formatDate($finalDate, "Y-d-m");
-
-                        
-                        echo "<BR>";
-
-                        //$startDateInput = formatDate(substr($startDate, 0, 10), "Y-d-m");
-                        //$finalDateInput = formatDate($finalDate, "Y-d-m");
-
-                        //var_dump($startDateInput);
-                        //var_dump($finalDateInput);
+                        $startDateInput = formatDate($startDate, "Y-m-d");
+                        $finalDateInput = formatDate($finalDate, "Y-m-d");
 
                         $startDateF = formatDate($startDate, "d/m/Y");
                         $finalDateF = formatDate($finalDate, "d/m/Y");
@@ -88,8 +70,8 @@ $movementsController = new MovementsController();
                             <li class="nav-item type-style">
                                 <h6>Tipo Relatório</h6>
                                 <?php
-                                $checkedIn = "";
-                                $checkedOut = "";
+                                $checkedIn = $checkedOut = "";
+
                                 if($_POST){
                                     if($_POST["type"] == "Entrada")
                                         $checkedIn = "checked";
@@ -154,7 +136,6 @@ $movementsController = new MovementsController();
                                     $price = $movement['price'];
                                     $amount = $movement['amount'];
                                     
-                                    echo $date;
                                     $date = formatDate($date);
 
                                     $total = $price * $amount;

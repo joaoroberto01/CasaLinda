@@ -9,11 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movimentos</title>
 
-
     <link rel="stylesheet" href="<?= BS_CSS_PATH ?>">
     <link rel="stylesheet" href="<?= DEFAULT_CSS_PATH ?>">
     <link rel="stylesheet" href="<?= CSS_PATH ?>/movements.css">
-
 
     <script src="<?= JS_PATH ?>/feather.min.js"></script>
 </head>
@@ -113,18 +111,8 @@
                                 <input id="type" type="hidden" name="type">
 
                                 <div class="col-6 mb-3">
-                                    <label for="amount" class="form-label">Quantidade</label>
-                                    <input required id="amount" min="0" type="number" class="form-control modal-input default-border" name="amount" placeholder="Quantidade">
-                                </div>
-
-                                <div class="col-6 mb-3">
-                                    <label for="price" class="form-label">Preço</label>
-                                    <input required id="price" type="text" class="form-control modal-input default-border" name="price" placeholder="Preço">
-                                </div>
-
-                                <div class="col-6 mb-3">
                                     <label for="product" class="form-label">Produto</label>
-                                    <select required id="product" class="form-control modal-input no-border default-border" name="id_product">
+                                    <select required id="product" class="form-control modal-input no-border default-border" onchange="autoFill(this)" name="id_product">
                                         <option value="" disabled selected hidden>Selecionar Produto</option>
                                         <?php
                                             $productController = new ProductController();
@@ -134,6 +122,16 @@
                                             }
                                         ?>
                                     </select>
+                                </div>
+
+                                <div class="col-6 mb-3">
+                                    <label for="amount" class="form-label">Quantidade</label>
+                                    <input required id="amount" min="0" type="number" class="form-control modal-input default-border" name="amount" placeholder="Quantidade">
+                                </div>
+
+                                <div class="col-6 mb-3">
+                                    <label for="price" class="form-label">Preço</label>
+                                    <input required id="price" type="text" class="form-control modal-input default-border" name="price" placeholder="Preço">
                                 </div>
                             </div>
                         </div>
@@ -166,11 +164,32 @@
             $("#btn-create").html(`Nova ${type}`);
         }
 
+        function autoFill(select){
+            var id = select.selectedOptions[0].value;
+
+            $.get(`${ROOT_PATH}/produtos/detalhes/${id}`, function(data, status){
+                console.log(data);
+                var product = JSON.parse(data);
+                
+                if (product.length == 0)
+                    goTo("logout");
+
+                var price;
+                var type = $('#type').val();
+                if (type == 'Entrada')
+                    price = product.price_in;
+                else
+                    price = product.price_out;
+
+                $('#price').val('R$ ' + Intl.NumberFormat('pt-BR').format(price));
+            });
+        }
+
         function validateForm(){
             var id = document.getElementById('product').selectedOptions[0].value; 
             var amount = document.getElementById('amount').value; 
 
-            $.get(ROOT_PATH + "/produtos/detalhes/" + id, function(data, status){
+            $.get(`${ROOT_PATH}/produtos/detalhes/${id}`, function(data, status){
                 console.log(data);
                 var product = JSON.parse(data);
                 
