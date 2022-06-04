@@ -49,10 +49,13 @@ Route::add('/produtos/criar', function() {
 	}
 	
 	if($_POST){
+		$_POST['price_in'] = clearCurrency($_POST['price_in']);
+		$_POST['price_out'] = clearCurrency($_POST['price_out']);
+	
 		$productController = new ProductController();
 		$productController->create($_POST);
 	}
-
+	
 	goToRoute("produtos");
 });
 
@@ -67,7 +70,9 @@ Route::add('/produtos/detalhes/([0-9]+)', function($id) {
 }, false);
 
 Route::add('/produtos/atualizar/([0-9]+)', function($id) {
-	if ($_FILES) {
+	if ($_FILES AND $_FILES['image']['size'] > 0) {
+		if(!file_exists(PRODUCT_IMAGES_PATH))
+			mkdir(PRODUCT_IMAGES_PATH);
 		$extension = explode(".", $_FILES['image']['name'])[1];
 
 		$filename = strtolower(utf8_decode(trim($_POST['name'])));

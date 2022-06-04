@@ -1,5 +1,8 @@
 <?php
 
+if(isset($_COOKIE['user']))
+	goToRoute();
+
 if ($_POST){
 	$userController = new UserController();
 	$password = sha1($_POST['password']);

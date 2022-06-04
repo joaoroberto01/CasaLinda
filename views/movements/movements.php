@@ -101,7 +101,7 @@
     <div class="modal fade" id="newMovementModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form method="POST" action="<?=ROOT_PATH?>movimentos/criar">
+                <form id="form" method="POST" onsubmit="return validateForm()" action="<?=ROOT_PATH?>movimentos/criar">
                     <div class="modal-header">
                         <h5 class="modal-title" id="title">Nova Movimentação</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -139,7 +139,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-dark">Criar</button>
+                        <button id="btn-create" type="submit" class="btn btn-dark">Criar</button>
                     </div>
                 </form>
             </div>
@@ -160,14 +160,40 @@
 
     <script type="text/javascript">
         function openModal(type){
-            $("#title").html(`Nova ${type}`);
+            $("#title").html(`Movimentação de ${type}`);
             $("#type").val(type);
             $("#newMovementModal").modal('toggle');
+            $("#btn-create").html(`Nova ${type}`);
+        }
+
+        function validateForm(){
+            var id = document.getElementById('product').selectedOptions[0].value; 
+            var amount = document.getElementById('amount').value; 
+
+            $.get(ROOT_PATH + "/produtos/detalhes/" + id, function(data, status){
+                console.log(data);
+                var product = JSON.parse(data);
+                
+                if (product.length == 0)
+                    goTo("logout");
+
+                if(amount <= product.amount)
+                    document.getElementById('form').submit(); 
+                else
+                    alert("Para de roubar, mlk");
+            });
+
+
+            return false;
         }
 
         $(function() {
             $('#price').maskMoney({prefix:'R$ ', thousands:'.', decimal:','});
         })
+
+        function goTo(link){
+	        window.location = ROOT_PATH + link;
+        }
     </script>
 </body>
 

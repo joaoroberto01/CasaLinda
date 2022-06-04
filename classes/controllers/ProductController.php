@@ -9,7 +9,19 @@ class ProductController extends DBController {
 	public function create($product){
 		$product['category'] = implode(", ", $product['category']);
 
+		$amount = $product['amount'];
+		unset($product['amount']);
+
 		$id = parent::insert($product);
+
+		
+
+		if($amount != 0){
+			$movement = ['amount' => $amount, 'price' => $product['price_in'], 'id_product' => $id, 'type' => 'Entrada'];
+
+			$movementsController = new MovementsController();
+			$movementsController->create($movement);
+		}
 	}
 
 	public function remove($id){

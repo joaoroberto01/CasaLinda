@@ -195,17 +195,17 @@
 
                                 <div class="col-6 mb-3">
                                     <label for="in" class="form-label">Valor entrada</label>
-                                    <input required id="in" type="text" class="form-control input-price modal-input default-border" name="entrada" placeholder="Valor entrada">
+                                    <input required id="in" type="text" class="form-control input-price modal-input default-border" name="price_in" placeholder="Valor entrada">
                                 </div>
 
                                 <div class="col-6 mb-3">
                                     <label for="out" class="form-label">Valor saída</label>
-                                    <input required id="out" type="text" class="form-control input-price modal-input default-border" name="saida" placeholder="Valor saída">
+                                    <input required id="out" type="text" class="form-control input-price modal-input default-border" name="price_out" placeholder="Valor saída">
                                 </div>
 
                                 <div class="col-6 mb-3">
-                                    <label for="quantity" class="form-label">Quantidade</label>
-                                    <input required id="quantity" type="number" class="form-control modal-input default-border" name="quantity" placeholder="Quantidade">
+                                    <label for="amount" class="form-label">Quantidade</label>
+                                    <input required id="amount" type="number" class="form-control modal-input default-border" name="amount" placeholder="Quantidade">
                                 </div>
 
                                 <div class="col-6 mb-3">
@@ -263,12 +263,12 @@
                                 <!--  -->
                                 <div class="col-6 mb-3">
                                     <label for="inDetail" class="form-label">Valor entrada</label>
-                                    <input required id="inDetail" type="text" class="form-control input-price modal-input default-border" name="entrada" placeholder="Valor entrada">
+                                    <input required id="inDetail" type="text" class="form-control input-price modal-input default-border" name="price_in" placeholder="Valor entrada">
                                 </div>
 
                                 <div class="col-6 mb-3">
                                     <label for="outDetail" class="form-label">Valor saída</label>
-                                    <input required id="outDetail" type="text" class="form-control input-price modal-input default-border" name="saida" placeholder="Valor saída">
+                                    <input required id="outDetail" type="text" class="form-control input-price modal-input default-border" name="price_out" placeholder="Valor saída">
                                 </div>
 
                                 <div class="col-12 mb-3">
@@ -319,7 +319,7 @@
 
     <script type="text/javascript">
         function productDetails(id) {
-            $.get('<?= ROOT_PATH?>' + "/produtos/detalhes/" + id, function(data, status){
+            $.get(ROOT_PATH + "/produtos/detalhes/" + id, function(data, status){
                 console.log(data);
                 var product = JSON.parse(data);
                 if (product.length == 0)
@@ -345,11 +345,10 @@
                 
 
                 document.getElementById("remove-btn").onclick = function(){
-                    if(confirm("Deseja remover o produto?")){
-                        window.location = '<?= ROOT_PATH ?>' + `produtos/remover/${product.id}`;
-                    }
+                    if(confirm("Deseja remover o produto?"))
+                        goTo(`produtos/remover/${product.id}`);
                 }
-                document.getElementById("update-form").action = '<?= ROOT_PATH?>' + `produtos/atualizar/${product.id}`;
+                document.getElementById("update-form").action = ROOT_PATH + `produtos/atualizar/${product.id}`;
 
                 $("#productDetailsModal").modal('toggle');
             });
@@ -368,6 +367,10 @@
                 preview.src = reader.result;
             };
             reader.readAsDataURL(fileInput.files[0]);
+        }
+
+        function goTo(link){
+	        window.location = ROOT_PATH + link;
         }
     </script>
 </body>

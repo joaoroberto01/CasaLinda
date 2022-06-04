@@ -83,6 +83,7 @@ require_once "utils/utils.php";
 	<script>
 		feather.replace()
 		const INACTIVITY_TIME = <?= INACTIVITY_TIME?>;	
+		const ROOT_PATH = '<?= ROOT_PATH?>';
 	</script>
 
 	<script src="<?= BS_JS_PATH ?>"></script>
