@@ -34,11 +34,36 @@ $movementsController = new MovementsController();
                     <form method="POST">
                         <?php
                         $type = isset($_POST['type']) ? $_POST['type'] : "Entrada";
-                        $startDate = isset($_POST['startDate']) ? $_POST['startDate'] : $movementsController->getFirstMovementDate();
+                        
                         $finalDate = isset($_POST['finalDate']) ? $_POST['finalDate'] : date('Y-m-d');
 
-                        $startDateInput = formatDate(substr($startDate, 0, 10), "Y-d-m");
+                        print_r($_POST);
+
+                        if(isset($_POST['startDate'])){
+                            $startDate = $_POST['startDate'];
+                            $startDate = formatDate($startDate, "Y-m-d", "Y-d-m");
+                        }else{
+                            $startDate = $movementsController->getFirstMovementDate();
+                            $startDate = substr($startDate, 0, 10);
+                        }
+
+                        if(isset($_POST['finalDate'])){
+                            $finalDate = $_POST['finalDate'];
+                            $finalDate = formatDate($finalDate, "Y-m-d", "Y-d-m");
+                        }else
+                            $finalDate = date("Y-m-d");
+
+                        $startDateInput = formatDate($startDate, "Y-d-m");
                         $finalDateInput = formatDate($finalDate, "Y-d-m");
+
+                        
+                        echo "<BR>";
+
+                        //$startDateInput = formatDate(substr($startDate, 0, 10), "Y-d-m");
+                        //$finalDateInput = formatDate($finalDate, "Y-d-m");
+
+                        //var_dump($startDateInput);
+                        //var_dump($finalDateInput);
 
                         $startDateF = formatDate($startDate, "d/m/Y");
                         $finalDateF = formatDate($finalDate, "d/m/Y");
@@ -51,12 +76,12 @@ $movementsController = new MovementsController();
                         <ul class="nav flex-column align-items-center mb-5" id="menu">
                             <li class="nav-item">
                                 <h6>Data Inicial</h6>
-                                <input class="form-control date" type="date" name="startDate" value="<?= $startDateInput?>">
+                                <input class="form-control date" type="date" name="startDate" value="<?= $startDateInput ?>">
                             </li>
 
                             <li class="nav-item mb-1">
                                 <h6>Data Final</h6>
-                                <input class="form-control date" type="date" name="finalDate" value="<?= $finalDateInput?>">
+                                <input class="form-control date" type="date" name="finalDate" value="<?= $finalDateInput ?>">
                             </li>
 
 
@@ -128,7 +153,8 @@ $movementsController = new MovementsController();
                                     $date = $movement['date'];
                                     $price = $movement['price'];
                                     $amount = $movement['amount'];
-
+                                    
+                                    echo $date;
                                     $date = formatDate($date);
 
                                     $total = $price * $amount;

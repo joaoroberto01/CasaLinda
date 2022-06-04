@@ -1,6 +1,7 @@
 <?php
-    function formatDate($date, $format = "d/m/Y H:i:s"){
-        $date = date_create($date);
+    function formatDate($date, $format = "d/m/Y H:i:s", $fromFormat = "Y-m-d H:i:s"){
+        $date = date_create_from_format($fromFormat, $date);
+        
         return date_format($date, $format);
     }
     
