@@ -31,6 +31,9 @@ Route::add('/produtos', function() {
 
 Route::add('/produtos/criar', function() {
 	if ($_FILES AND $_FILES['image']['size'] > 0) {
+		if(!file_exists(PRODUCT_IMAGES_PATH))
+			mkdir(PRODUCT_IMAGES_PATH);
+
 		$extension = explode(".", $_FILES['image']['name'])[1];
 
 		$filename = strtolower(utf8_decode(trim($_POST['name'])));
