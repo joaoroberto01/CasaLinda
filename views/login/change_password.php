@@ -1,7 +1,7 @@
 <?php
 	require_once "utils/email_utils.php";
 	if(!isset($userInfo))
-		header("Location: forgot");
+		goToRoute("forgot");
 
 	$userInfo = json_decode(base64_decode($userInfo), true);
 
@@ -14,6 +14,7 @@
 		
 		$userController->update(['password' => $password], "WHERE id = ?", [$userInfo['id']]);
 		$updated = true;
+		goToRoute("login");
 	}
 ?>
 

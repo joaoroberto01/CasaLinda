@@ -111,7 +111,7 @@ $movementsController = new MovementsController();
                     $movements = $movementsController->getReport($type, $startDate, $finalDate);
                     $hide = "";    
                     if (!$movements) {
-                        echo "<b>Nenhum movimento encontrado.</b>";
+                        echo "<b>Nenhum registro encontrado.</b>";
                         $hide = "d-none";
                     }
                     ?>

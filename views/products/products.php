@@ -93,24 +93,21 @@
                     if($_POST){
                         $filterCategories = isset($_POST['category']) ? $_POST['category'] : [];
 
-                        $query = "WHERE name LIKE ?";
+                        $search = $_POST['search'];
 
-                        if (count($filterCategories) > 0) {
-                            $filterCategories = array_map(
-                                function($item){return "'$item'";}
-                                , $filterCategories);
-
-                            $fields = implode(",", $filterCategories);
-                            $query .= " AND category IN ($fields)";
-                        }
-
-                        $products = $productController->getAll($query, ["%${_POST['search']}%"]);
+                        $products = $productController->getAllFiltered($filterCategories, $search);
                     } else
                         $products = $productController->getAll();
                             
                     $hide = "";    
                     if (!$products) {
-                        echo "<b>Nenhum produto encontrado.</b>";
+                        $msgCategory = "";
+
+                        if (count($filterCategories) > 0) {
+                            $msgCategory = "nas categorias: <b>" . implode(', ', $filterCategories) . "</b>";
+                        }
+
+                        echo "<div class='mx-4'>Nenhum produto com essa pesquisa encontrado $msgCategory.</div>";
                         $hide = "d-none";
                     }
                 ?>
@@ -326,13 +323,15 @@
                 if (product.length == 0)
                     window.location = "logout";
 
+                var localeBR = Intl.NumberFormat('pt-BR');
+
                 $("#nameDetail").val(product.name);
                 $("#descriptionDetail").val(product.description);
-                $("#inDetail").val(product.price_in);
-                $("#outDetail").val(product.price_out);
+                $("#inDetail").val('R$ ' + localeBR.format(product.price_in));
+                $("#outDetail").val('R$ ' + localeBR.format(product.price_out));
 
                 var options = document.getElementsByClassName('detailOption');
-                var categories = product.category.split(", ");
+                var categories = product.category.split(",");
 
                 for (var i = 0; i < options.length; i++) {
                     options[i].selected = false;
