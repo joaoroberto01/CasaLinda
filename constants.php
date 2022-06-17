@@ -28,6 +28,7 @@
 	# VIEWS 
 	define('EMAIL_TEMPLATES_PATH', VIEWS_PATH . 'email_templates');
 	define('ERROR_VIEW_PATH', VIEWS_PATH . 'error.php');
+	define('CLIENT_ERROR_VIEW_PATH', VIEWS_PATH . 'client_error.php');
 
 	define('INACTIVITY_TIME', 600);
 	define('RESTOCK_LIMIT', 5);

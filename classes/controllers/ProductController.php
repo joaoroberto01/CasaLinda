@@ -14,7 +14,8 @@ class ProductController extends DBController {
 
 		$id = parent::insert($product);
 
-		
+		if ($id == 0)
+			return false;
 
 		if($amount != 0){
 			$movement = ['amount' => $amount, 'price' => $product['price_in'], 'id_product' => $id, 'type' => 'Entrada'];
@@ -22,6 +23,8 @@ class ProductController extends DBController {
 			$movementsController = new MovementsController();
 			$movementsController->create($movement);
 		}
+
+		return true;
 	}
 
 	public function remove($id){
@@ -31,7 +34,7 @@ class ProductController extends DBController {
 	public function edit($id, $product){
 		$product['category'] = implode(",", $product['category']);
 
-		parent::update($product, "WHERE id = ?", [$id]);
+		return parent::update($product, "WHERE id = ?", [$id]);
 	}
 
 	public function get($id){

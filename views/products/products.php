@@ -102,12 +102,17 @@
                     $hide = "";    
                     if (!$products) {
                         $msgCategory = "";
+                        $msg = "Nenhum produto encontrado";
 
-                        if (count($filterCategories) > 0) {
-                            $msgCategory = "nas categorias: <b>" . implode(', ', $filterCategories) . "</b>";
+                        if($_POST){
+                            if (count($filterCategories) > 0)
+                                $msgCategory = " nas categorias: <b>" . implode(', ', $filterCategories) . "</b>";
+
+                            $msg = "Nenhum produto com essa pesquisa encontrado$msgCategory";
                         }
+                        
+                        echo "<div class='mx-4'>$msg.</div>";
 
-                        echo "<div class='mx-4'>Nenhum produto com essa pesquisa encontrado $msgCategory.</div>";
                         $hide = "d-none";
                     }
                 ?>
@@ -203,7 +208,7 @@
 
                                 <div class="col-6 mb-3">
                                     <label for="amount" class="form-label">Quantidade</label>
-                                    <input required id="amount" type="number" class="form-control modal-input default-border" name="amount" placeholder="Quantidade">
+                                    <input required id="amount" type="number" class="form-control modal-input default-border" name="amount" min="0" placeholder="Quantidade">
                                 </div>
 
                                 <div class="col-6 mb-3">

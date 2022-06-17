@@ -162,6 +162,11 @@
             $("#type").val(type);
             $("#newMovementModal").modal('toggle');
             $("#btn-create").html(`Nova ${type}`);
+
+            if (type == "Entrada")
+                $("#amount").attr({"min" : 1});
+            else
+                $("#amount").attr({"min" : 0});
         }
 
         function autoFill(select){
@@ -207,7 +212,7 @@
         }
 
         $(function() {
-            $('#price').maskMoney({prefix:'R$ ', thousands:'.', decimal:','});
+            $('#price').maskMoney({prefix:'R$ ', thousands:'.', decimal:',', allowZero: true});
         })
 
         function goTo(link){

@@ -23,13 +23,15 @@
             }
         }
 
-        private function execute($query, $params = []){
+        private function execute($query, $params = [], $die = true){
             try {
                 $statement = $this->connection->prepare($query);
                 $statement->execute($params);
                 return $statement;
             }catch(PDOException $e){
-                die('DB QUERY ERROR: '.$e->getMessage());
+                if($die)
+                    die('DB QUERY ERROR: '.$e->getMessage());
+                return null;
             }
         }
 
@@ -41,7 +43,7 @@
             
             $query = "INSERT INTO $this->table ($fields) VALUES($values)";
             
-            $this->execute($query, array_values($dict));
+            $this->execute($query, array_values($dict), false);
 
             return $this->connection->lastInsertId();
         }
@@ -67,10 +69,8 @@
 
             $query = "UPDATE $this->table SET $fields $where";
 
-            $this->execute($query, $values);
+            return $this->execute($query, $values, false);
         }
-
-        
 
         public function delete($where, $params){
             $this->execute("DELETE FROM $this->table $where", $params);

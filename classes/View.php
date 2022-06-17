@@ -15,6 +15,9 @@
             require_once ERROR_VIEW_PATH;
         }
 
+        public static function clientError($errorMessage, $link){
+            require_once CLIENT_ERROR_VIEW_PATH;
+        }
         
     }
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 04/06/2022 às 20:27
+-- Tempo de geração: 17/06/2022 às 21:23
 -- Versão do servidor: 10.4.21-MariaDB
 -- Versão do PHP: 7.4.28
 
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `casa_linda`
 --
-CREATE DATABASE IF NOT EXISTS `casa_linda` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
-USE `casa_linda`;
 
 -- --------------------------------------------------------
 
@@ -75,11 +73,12 @@ CREATE TABLE IF NOT EXISTS `Products` (
   `name` varchar(30) NOT NULL,
   `description` varchar(100) NOT NULL,
   `category` tinytext NOT NULL,
-  `price_in` float NOT NULL,
-  `price_out` float NOT NULL,
+  `price_in` double NOT NULL DEFAULT 0,
+  `price_out` double NOT NULL DEFAULT 0,
   `image` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Gatilhos `Products`
@@ -104,14 +103,14 @@ CREATE TABLE IF NOT EXISTS `Users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Despejando dados para a tabela `Users`
 --
 
 INSERT INTO `Users` (`id`, `name`, `email`, `username`, `password`) VALUES
-(1, 'Administrador', 'joaoroberto.gc.01@gmail.com', 'admin', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220');
+(1, 'Administrador', 'jmsistemas2018@gmail.com', 'admin', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220');
 
 --
 -- Restrições para tabelas despejadas

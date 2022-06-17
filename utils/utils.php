@@ -13,7 +13,7 @@ function getGreeting(){
 }
 
 function getCategories(){
-	$categories = ["Cozinha", "Banheiro", "Sala"];
+	$categories = ["Area Externa", "Cozinha", "Banheiro", "Sala", "Quarto", "Quintal", "Garagem", "Porão", "Abatedouro"];
 	sort($categories);
 	array_push($categories, "Outros");
 

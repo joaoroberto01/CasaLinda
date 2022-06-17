@@ -53,7 +53,10 @@ Route::add('/produtos/criar', function() {
 		$_POST['price_out'] = clearCurrency($_POST['price_out']);
 	
 		$productController = new ProductController();
-		$productController->create($_POST);
+		if(!$productController->create($_POST)){
+			View::clientError("Um produto com esse nome já existe", ROOT_PATH . "produtos");
+			return;
+		}
 	}
 	
 	goToRoute("produtos");
@@ -94,7 +97,13 @@ Route::add('/produtos/atualizar/([0-9]+)', function($id) {
 			unlink(PRODUCT_IMAGES_PATH . $oldImg);
 		}
 
-		$productController->edit($id, $_POST);
+		$_POST['price_in'] = clearCurrency($_POST['price_in']);
+		$_POST['price_out'] = clearCurrency($_POST['price_out']);
+
+		if (!$productController->edit($id, $_POST)){
+			View::clientError("Um produto com esse nome já existe", ROOT_PATH . "produtos");
+			return;
+		}
 	}
 
 	goToRoute("produtos");
